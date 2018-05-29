@@ -117,10 +117,10 @@ function ProOuParticulier () {
 
 function ChangeTextPro (Pro) {
   var ChangePro = document.getElementById('Pro')
-  if (ChangePro.firstChild.data == 'Pro') {
-    ChangePro.firstChild.data = 'Particulier'
+  if (ChangePro.value == 'Pro') {
+    ChangePro.value = 'Particulier'
   } else {
-    ChangePro.firstChild.data = 'Pro'
+    ChangePro.value = 'Pro'
   }
 }
 
