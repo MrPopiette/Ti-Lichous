@@ -155,5 +155,22 @@ function PauseGourmande
 */
 
 function PauseGourmande () {
+  if (PauseGourmande === true) {
+    console.log('Salé')
+    PauseGourmande = false
+    document.getElementById('Sucré').disabled = false
+  } else {
+    console.log('Sucré')
+    TypePersonne = true
+    document.getElementById('Sucré').disabled = true
+  }
+};
 
+function ChangeTextGourmande (Salé) {
+  var ChangeGourmande = document.getElementById('Salé')
+  if (ChangeGourmande.value == 'Salé') {
+    ChangeGourmande.value = 'Sucré'
+  } else {
+    ChangeGourmande.value = 'Salé'
+  }
 }
