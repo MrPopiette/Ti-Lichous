@@ -96,6 +96,8 @@ var NbrPlatsTypiques8 = 0 // Buffet de crepes
 // VARIABLES AUTRES
 
 var erreur = false
+var step = 0;
+var stepTab;
 
 // ===================================================================================
 
@@ -103,6 +105,7 @@ var erreur = false
 function ProOuParticulier
 */
 
+/*Bloque le bouton Repas/Collation quand "Particulier" est sélectionné*/
 function ProOuParticulier () {
   if (TypePersonne === true) {
     console.log('Pro')
@@ -115,15 +118,30 @@ function ProOuParticulier () {
   }
 };
 
+/* Change l'état du bouton Professionnel/Particulier */
 function ChangeTextPro (Pro) {
   var ChangePro = document.getElementById('Pro')
-  if (ChangePro.value == 'Pro') {
+  var ChangeListPro = document.getElementById('listPro')
+  if (ChangePro.value == 'Professionnel') {
     ChangePro.value = 'Particulier'
+    ChangeListPro.firstChild.data = 'Particulier';
   } else {
-    ChangePro.value = 'Pro'
+    ChangePro.value = 'Professionnel'
+    ChangeListPro.firstChild.data = 'Professionnel';
   }
 }
 
+function checkPro() {
+  if (step == 0){
+      pro.style.display = 'none';
+      nbPersons.style.display = 'block';
+      step = 1;
+  } else if (step == 1){
+      pro.style.display = 'block';
+      nbPersons.style.display = 'none';
+      step = 0;
+  }
+}
 
 /*
 function ChoixNbrPersonnes
@@ -141,12 +159,15 @@ function TypeMenu
 */
 
 function TypeMenu () {
+  var ChangeListMenu = document.getElementById('listMenu')
   if (TypeRepas === true) {
     console.log('Repas')
     TypeRepas = false
+    ChangeListMenu.firstChild.data = 'Repas';
   } else {
     console.log('Collation')
     TypeRepas = true
+    ChangeListMenu.firstChild.data = 'Collation';
   }
 }
 
@@ -172,5 +193,38 @@ function ChangeTextGourmande (Salé) {
     ChangeGourmande.value = 'Sucré'
   } else {
     ChangeGourmande.value = 'Salé'
+  }
+}
+
+/*
+function MenuParticulier
+*/
+
+function MenuParticulier () {
+  if (TypeMenu === true) {
+    console.log('Menu Crepes')
+    TypeMenu = false
+    document.getElementById('Lichouseries').disabled = false
+    document.getElementById('PlatsTypiques').disabled = false
+    document.getElementById('Prestige').disabled = true
+    document.getElementById('Classique').disabled = true
+    document.getElementById('Boissons').disabled = true
+  } else {
+    console.log('A Emporter')
+    TypeMenu = true
+    document.getElementById('Prestige').disabled = false
+    document.getElementById('Classique').disabled = false
+    document.getElementById('Boissons').disabled = false
+    document.getElementById('Lichouseries').disabled = true
+    document.getElementById('PlatsTypiques').disabled = true
+  }
+};
+
+function ChangeTextParticulier (MenuCrepes) {
+  var ChangeParticulier = document.getElementById('MenuCrepes')
+  if (ChangeParticulier.value == 'MenuCrepes') {
+    ChangeParticulier.value = 'A Emporter'
+  } else {
+    ChangeParticulier.value = 'MenuCrepes'
   }
 }
