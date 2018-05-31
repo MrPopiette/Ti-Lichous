@@ -1,23 +1,64 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Debut en JS</title>
+        <title>Traiteur Ti Lichous</title>
         <script type="text/javascript" src="jse.js"></script>
+        <link rel="stylesheet" type="text/css" href="media.css">
     </head>
     <body>
-        test
-        <br>
-        <button id='Pro' onclick="ProOuParticulier(); ToggleTextPro(this.id);">Pro</button>
-        <br>
-        <button id='Menu' onclick='TypeMenu()'> Repas ou Collation </button>
-        <br>
-        <input id='NbrPersonnes'  type="number" min="8" max="1000" placeholder="Nombre de personnes (minium 8)" required>
-        <button class="Validation" onclick="ChoixNbrPersonnes()">Valider</button>
-        <p id='PersonneDevis' ></p>
-        
+        <h1>TRAITEUR</h1>
 
+        <!-- Liste des étapes -->
+        <ul>
+            <li id='listPro'>...</li>
+            <li id='listNbPersonnes'>...</li>
+            <li id='listMenu'>...</li>
+        </ul><br>
+        <!-- Etapes -->
+        <form method="post" action="traitement.php">
+            <div class="Step" id="pro">
+                <p> Etes-vous professionnel ou particulier ? </p>
+                <input type="radio" name="pro" value="Particulier" /> Particulier 
+                <input type="radio" name="pro" value="Professionnel" /> Professionnel<br>
+                <br>
+                <input type="button" value="Suivant" onclick="checkPro();" /><br>
+                <br>
+            </div>
+            
+            <div class="Step" id="nbPersons">
+                <p> Combien de personnes êtes-vous ? </p>
+                <input id='NbrPersonnes'  type="number" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
+                <br>
+                <!-- <button class="Validation" onclick="ChoixNbrPersonnes()">Valider</button> -->
+                <input type="button" value="Précédent" onclick="checkPro();" />
+                <input type="button" value="Suivant" onclick="" />
+                <p id='PersonneDevis' ></p>
+            </div>
+            <br>
 
-        
+            <div class="Step" id="pauseGourmande">
+                <p> Pause gourmande : Sucrée ou apéritive </p>
+                <input type="radio" name="pro" value="1" checked/> Sucrée 
+                <input type="radio" name="pro" value="2" /> Apéritive
+                <input type="radio" name="pro" value="3" /> Demande personalisée<br>
+                <br>
+                <input type="button" value="Précédent" onclick="" />
+                <input type="button" value="Suivant" onclick="" /><br>
+                <br>
+            </div>
+
+            <div class="Step" id="menu">
+                <p> ...... </p>
+                <input type="radio" name="pro" value="1" checked/> Lichouseries Sucrées/salées (A emporter)<br>
+                <input type="radio" name="pro" value="2" /> Menu crêpes (A domicile)<br>
+                <br>
+                <input type="button" value="Précédent" onclick="" />
+                <input type="button" value="Suivant" onclick="" /><br>
+                <br>
+            </div>
+            <br>
+        </form>
+
         <script type="text/javascript"></script>
     </body>
 </html>
