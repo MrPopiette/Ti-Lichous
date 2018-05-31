@@ -106,41 +106,63 @@ function ProOuParticulier
 */
 
 /*Bloque le bouton Repas/Collation quand "Particulier" est sélectionné*/
-function ProOuParticulier () {
-  if (TypePersonne === true) {
-    console.log('Pro')
-    TypePersonne = false
-    document.getElementById('Menu').disabled = false
-  } else {
-    console.log('Particulier')
-    TypePersonne = true
-    document.getElementById('Menu').disabled = true
-  }
-};
+// function ProOuParticulier () {
+//   if (TypePersonne === true) {
+//     console.log('Pro')
+//     TypePersonne = false
+//     document.getElementById('Menu').disabled = false
+//   } else {
+//     console.log('Particulier')
+//     TypePersonne = true
+//     document.getElementById('Menu').disabled = true
+//   }
+// };
 
 /* Change l'état du bouton Professionnel/Particulier */
-function ChangeTextPro (Pro) {
-  var ChangePro = document.getElementById('Pro')
-  var ChangeListPro = document.getElementById('listPro')
-  if (ChangePro.value == 'Professionnel') {
-    ChangePro.value = 'Particulier'
-    ChangeListPro.firstChild.data = 'Particulier';
-  } else {
-    ChangePro.value = 'Professionnel'
-    ChangeListPro.firstChild.data = 'Professionnel';
-  }
-}
+// function ChangeTextPro (Pro) {
+//   var ChangePro = document.getElementById('Pro')
+//   var ChangeListPro = document.getElementById('listPro')
+//   if (ChangePro.value == 'Professionnel') {
+//     ChangePro.value = 'Particulier'
+//     ChangeListPro.firstChild.data = 'Particulier';
+//   } else {
+//     ChangePro.value = 'Professionnel'
+//     ChangeListPro.firstChild.data = 'Professionnel';
+//   }
+// }
 
 function checkPro() {
   if (step == 0){
       pro.style.display = 'none';
       nbPersons.style.display = 'block';
-      step = 1;
+      step = step + 1;
+      var id = 1;
+      var info = getPro();
+      alert(info);
+      insertTab(id, 'Professionnel');
   } else if (step == 1){
       pro.style.display = 'block';
       nbPersons.style.display = 'none';
-      step = 0;
+      step = step - 1;
   }
+  // alert('End');
+}
+
+function getPro() {
+  var info;
+  var inputs = document.getElementsByName("pro");
+  inputsLength = inputs.length;
+  for (var i = 0; i < inputsLength; i++) {
+    if (inputs[i].type === 'radio' && inputs[i].checked) {
+        info = String(inputs[i]);
+        alert(info);
+    }
+  }
+  return info;
+}
+
+function insertTab(id, info) {
+  stepTab.push('Professionnel');
 }
 
 /*
