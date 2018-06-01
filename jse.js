@@ -1,103 +1,11 @@
-// alert("Tu dois valider l'alerte pour que le script se lance !");
 
-/*
-*
-*   La seconde alerte ouvre une seconde boite de dialogue en arrière plan, proposant
-*   d'empecher la diffusion d'autres alertes.
-*
-*   alert('Superposition ?');
-*
-*/
-
-// =========================================================
-console.log('Salutàtouslesamiscestdavidlafargepokemon!')
-console.log('Marie la mante religieuse')
-console.log('Hello in JS')
-var a
-a = 42.5364354
-console.log(a)
-a = Math.random()
-console.log(a)
-// ==========================================================
-
-/*
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-*/
-
-var test = false
 console.clear()
-
-// ======================================================================================
-// Déclaration des variables selon leur fonction pour le projet Ti Lichous :
-
-var TypePersonne = false
-var TypeRepas = false
-var Lichouseries = false
-var MenuCrepes = false
-var PauseGourmande = false
-var NombrePersonnes = 0
-
-// EVENEMENT PRO / RECEPTION //
-
-// Pause gourmande sucrée
-var NbrPauseGourmandeSucree1 = 0
-var NbrPauseGourmandeSucree2 = 0
-var NbrPauseGourmandeSucree3 = 0
-// Pause gourmande salée
-var NbrPauseGourmandeSalee1 = 0
-var NbrPauseGourmandeSalee2 = 0
-// Menu Crepes
-var NbrMenuCrepesC1 = 0 // C = classique || P = prestige
-var NbrMenuCrepesC2 = 0
-var NbrMenuCrepesC3 = 0
-var NbrMenuCrepesC4 = 0
-var NbrMenuCrepesP1 = 0
-// Boissons
-var NbrBoissons1 = 0
-var NbrBoissons2 = 0
-var NbrBoissons3 = 0
-var NbrBoissons4 = 0
-
-// REPAS A EMPORTER //
-
-// Selection Sucrée
-var NbrSelectionSucree1 = 0
-var NbrSelectionSucree2 = 0
-var NbrSelectionSucree3 = 0
-// Selection Salée
-var NbrSelectionSalee = 0
-var NbrSelectionSalee = 0
-var NbrSelectionSalee = 0
-// Autres plats
-var NbrPlatsTypiques1 = 0
-var NbrPlatsTypiques2 = 0
-var NbrPlatsTypiques3 = 0
-var NbrPlatsTypiques4 = 0
-var NbrPlatsTypiques5 = 0
-var NbrPlatsTypiques6 = 0
-var NbrPlatsTypiques7 = 0 // Jambon à l'os, comment ça se passe ?
-var NbrPlatsTypiques8 = 0 // Buffet de crepes
 
 // VARIABLES AUTRES
 
 var erreur = false
 var step = 0;
-var stepTab;
+var stepTab = new Array();
 
 // ===================================================================================
 
@@ -131,21 +39,23 @@ function ProOuParticulier
 //   }
 // }
 
+
+
+
+
 function checkPro() {
   if (step == 0){
       pro.style.display = 'none';
       nbPersons.style.display = 'block';
       step = step + 1;
-      var id = 1;
+      var id = 0;
       var info = getPro();
-      alert(info);
-      insertTab(id, 'Professionnel');
-  } else if (step == 1){
+      insertTab(id, info);
+  } else {
       pro.style.display = 'block';
       nbPersons.style.display = 'none';
       step = step - 1;
   }
-  // alert('End');
 }
 
 function getPro() {
@@ -154,15 +64,14 @@ function getPro() {
   inputsLength = inputs.length;
   for (var i = 0; i < inputsLength; i++) {
     if (inputs[i].type === 'radio' && inputs[i].checked) {
-        info = String(inputs[i]);
-        alert(info);
+        info = String(inputs[i].value);
     }
   }
   return info;
 }
 
 function insertTab(id, info) {
-  stepTab.push('Professionnel');
+  stepTab.push(info);
 }
 
 /*
