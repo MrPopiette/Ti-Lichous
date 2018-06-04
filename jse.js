@@ -4,8 +4,8 @@ console.clear()
 // VARIABLES AUTRES
 
 var erreur = false
-var step = 0;
-var stepTab = new Array();
+var step = 0
+var stepTab = new Array()
 
 // ===================================================================================
 
@@ -13,7 +13,7 @@ var stepTab = new Array();
 function ProOuParticulier
 */
 
-/*Bloque le bouton Repas/Collation quand "Particulier" est sélectionné*/
+/*Bloque le bouton Repas/Collation quand "Particulier" est sélectionné */
 // function ProOuParticulier () {
 //   if (TypePersonne === true) {
 //     console.log('Pro')
@@ -39,39 +39,35 @@ function ProOuParticulier
 //   }
 // }
 
-
-
-
-
-function checkPro() {
-  if (step == 0){
-      pro.style.display = 'none';
-      nbPersons.style.display = 'block';
-      step = step + 1;
-      var id = 0;
-      var info = getPro();
-      insertTab(id, info);
+function checkPro () {
+  if (step == 0) {
+    pro.style.display = 'none'
+    nbPersons.style.display = 'block'
+    step = step + 1
+    var id = 0
+    var info = getPro()
+    insertTab(id, info)
   } else {
-      pro.style.display = 'block';
-      nbPersons.style.display = 'none';
-      step = step - 1;
+    pro.style.display = 'block'
+    nbPersons.style.display = 'none'
+    step = step - 1
   }
 }
 
-function getPro() {
-  var info;
-  var inputs = document.getElementsByName("pro");
-  inputsLength = inputs.length;
+function getPro () {
+  var info
+  var inputs = document.getElementsByName('pro')
+  inputsLength = inputs.length
   for (var i = 0; i < inputsLength; i++) {
     if (inputs[i].type === 'radio' && inputs[i].checked) {
-        info = String(inputs[i].value);
+      info = String(inputs[i].value)
     }
   }
-  return info;
+  return info
 }
 
-function insertTab(id, info) {
-  stepTab.push(info);
+function insertTab (id, info) {
+  stepTab.push(info)
 }
 
 /*
@@ -94,11 +90,11 @@ function TypeMenu () {
   if (TypeRepas === true) {
     console.log('Repas')
     TypeRepas = false
-    ChangeListMenu.firstChild.data = 'Repas';
+    ChangeListMenu.firstChild.data = 'Repas'
   } else {
     console.log('Collation')
     TypeRepas = true
-    ChangeListMenu.firstChild.data = 'Collation';
+    ChangeListMenu.firstChild.data = 'Collation'
   }
 }
 
