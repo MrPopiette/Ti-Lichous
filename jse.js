@@ -39,9 +39,59 @@ function ProOuParticulier
 //   }
 // }
 
+function Step(idName, prevStep) {
+  this.idName = idName;
+  this.prevStep = prevStep;
+  var formType;
+  var formTab;
+
+  this.prevStep = function() {
+    if(prevstep != none) {
+      this.hideBlockCSS();
+      prevStep.showBlockCSS();  // A tester
+    }
+  }
+
+  this.nextStep = function() {
+    this.hideBlockCSS();
+    //Vérification formulaire
+    //... Affichage block suivant
+  }
+
+  this.getInfo = function() {
+    var info;
+    var inputs;
+  }
+
+  this.showBlockCSS = function () {
+    id = document.getElementById(idName);
+    id.style.display = 'block';
+  }
+
+  this.hideBlockCSS = function () {
+    id = document.getElementById(idName);
+    id.style.display = 'none';
+  }
+}
 
 
+//* Affichage et camouflage des blocks
+//Direction vers le block précédent
+//Type de formulaire
+//Choix du formulaire
+//Direction des choix du formulaire
 
+var step1 = new Step('pro', 'none');
+
+function testScript1() {
+  step1.hideBlockCSS();
+}
+
+function testScript2() {
+  step1.showBlockCSS();
+}
+
+//-----------------------------------------------
 
 function checkPro() {
   if (step == 0){
