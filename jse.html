@@ -18,7 +18,7 @@
         <form method="post" action="traitement.php">
             <div class="Step" id="pro">
                 <p> Etes-vous professionnel ou particulier ? </p>
-                <input type="radio" name="pro" value="Particulier" /> Particulier 
+                <input type="radio" name="pro" value="Particulier" checked/> Particulier<br>
                 <input type="radio" name="pro" value="Professionnel" /> Professionnel<br>
                 <br>
                 <input type="button" value="Suivant" onclick="checkPro();" /><br>
@@ -38,9 +38,9 @@
 
             <div class="Step" id="pauseGourmande">
                 <p> Pause gourmande : Sucrée ou apéritive </p>
-                <input type="radio" name="pro" value="1" checked/> Sucrée 
-                <input type="radio" name="pro" value="2" /> Apéritive
-                <input type="radio" name="pro" value="3" /> Demande personalisée<br>
+                <input type="radio" name="pause" value="1" checked/> Sucrée 
+                <input type="radio" name="pause" value="2" /> Apéritive
+                <input type="radio" name="pause" value="3" /> Demande personalisée<br>
                 <br>
                 <input type="button" value="Précédent" onclick="" />
                 <input type="button" value="Suivant" onclick="" /><br>
@@ -49,8 +49,8 @@
 
             <div class="Step" id="menu">
                 <p> ...... </p>
-                <input type="radio" name="pro" value="1" checked/> Lichouseries Sucrées/salées (A emporter)<br>
-                <input type="radio" name="pro" value="2" /> Menu crêpes (A domicile)<br>
+                <input type="radio" name="menu" value="1" checked/> Lichouseries Sucrées/salées (A emporter)<br>
+                <input type="radio" name="menu" value="2" /> Menu crêpes (A domicile)<br>
                 <br>
                 <input type="button" value="Précédent" onclick="" />
                 <input type="button" value="Suivant" onclick="" /><br>
