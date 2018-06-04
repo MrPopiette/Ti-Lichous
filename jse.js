@@ -42,8 +42,14 @@ function ProOuParticulier
 function Step(idName, prevStep) {
   this.idName = idName;
   this.prevStep = prevStep;
-  var formType;
+  var formType; // 0 = Radiobouton  1 = Slider
   var formTab;
+  if (formtype == 0) {
+    //Récupérer le nombre de bouton dans le HTML
+    //Mettre les valeurs dans la var 'formTab' (value du bouton -> Redirection vers l'étape suivante)
+  } else if (formtype == 1){
+    //Mettre les valeurs dans la var 'formTab' (value du bouton -> Redirection vers l'étape suivante)
+  }
 
   this.prevStep = function() {
     if(prevstep != none) {
@@ -55,7 +61,7 @@ function Step(idName, prevStep) {
   this.nextStep = function() {
     this.hideBlockCSS();
     //Vérification formulaire
-    //... Affichage block suivant
+    //... Affichage block suivant (var 'formTab')
   }
 
   this.getInfo = function() {
