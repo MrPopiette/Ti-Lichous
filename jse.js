@@ -1,55 +1,19 @@
 
 console.clear()
 
-// VARIABLES AUTRES
-
 var erreur = false
-var step = 0;
-var stepTab = new Array();
+var activeStep = step1;
+// Tableaux 'formTab'
+var nextPro = ['nbPersons1', 'nbPersons2'];
+var nextNbPersons1 = 'pauseGourmande';
+var nextNbPersons2 = 'menu';
 
-// ===================================================================================
-
-/*
-function ProOuParticulier
-*/
-
-/*Bloque le bouton Repas/Collation quand "Particulier" est sélectionné*/
-// function ProOuParticulier () {
-//   if (TypePersonne === true) {
-//     console.log('Pro')
-//     TypePersonne = false
-//     document.getElementById('Menu').disabled = false
-//   } else {
-//     console.log('Particulier')
-//     TypePersonne = true
-//     document.getElementById('Menu').disabled = true
-//   }
-// };
-
-/* Change l'état du bouton Professionnel/Particulier */
-// function ChangeTextPro (Pro) {
-//   var ChangePro = document.getElementById('Pro')
-//   var ChangeListPro = document.getElementById('listPro')
-//   if (ChangePro.value == 'Professionnel') {
-//     ChangePro.value = 'Particulier'
-//     ChangeListPro.firstChild.data = 'Particulier';
-//   } else {
-//     ChangePro.value = 'Professionnel'
-//     ChangeListPro.firstChild.data = 'Professionnel';
-//   }
-// }
-
-function Step(idName, prevStep) {
+// Class 'Step'
+function Step(idName, prevStep, formType, formTab) {
   this.idName = idName;
   this.prevStep = prevStep;
-  var formType; // 0 = Radiobouton  1 = Slider
-  var formTab;
-  if (formtype == 0) {
-    //Récupérer le nombre de bouton dans le HTML
-    //Mettre les valeurs dans la var 'formTab' (value du bouton -> Redirection vers l'étape suivante)
-  } else if (formtype == 1){
-    //Mettre les valeurs dans la var 'formTab' (value du bouton -> Redirection vers l'étape suivante)
-  }
+  this.formType = formType; // 0 = Radiobouton  1 = Slider
+  this.formTab = formTab;
 
   this.prevStep = function() {
     if(prevstep != none) {
@@ -60,13 +24,26 @@ function Step(idName, prevStep) {
 
   this.nextStep = function() {
     this.hideBlockCSS();
-    //Vérification formulaire
-    //... Affichage block suivant (var 'formTab')
+    var info = getInfo();
+    info = formTab[info];
+    info = Object(info);
+    info.showBlockCSS();
+    activeStep = info;
   }
 
   this.getInfo = function() {
-    var info;
     var inputs;
+    if (formType == 0){
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+        for (var i = 0; i < inputsLength; i++) {
+          if (inputs[i].type === 'radio' && inputs[i].checked) {
+            return i;
+          }
+      }
+    } else if (formType == 1) {
+      //getter du form de type slider
+    }
   }
 
   this.showBlockCSS = function () {
@@ -82,14 +59,21 @@ function Step(idName, prevStep) {
 
 
 //* Affichage et camouflage des blocks
-//Direction vers le block précédent
-//Type de formulaire
-//Choix du formulaire
+//* Direction vers le block précédent
+//* Type de formulaire
+//* Choix du formulaire
 //Direction des choix du formulaire
 
-var step1 = new Step('pro', 'none');
+var step1 = new Step('pro', 'none', 0, nextPro);
+
+function next() {
+  Object(activeStep).nextStep();
+}
+
+
 
 function testScript1() {
+  
   step1.hideBlockCSS();
 }
 
