@@ -85,8 +85,8 @@ function Step(idName, prevStep, formType, nextStep) {
 var pro = new Step('pro', 'none', 0, nextPro);
 var nbPersons1 = new Step('nbPersons', pro, 1, nextNbPersons1);
 var nbPersons2 = new Step('nbPersons', pro, 1, nextNbPersons2);
-var pauseGourmande = new Step('pauseGourmande', nextNbPersons1, 0, nextPauseGourmande);
-var menu = new Step('menu', nextNbPersons2, 0, nextMenu);
+var pauseGourmande = new Step('pauseGourmande', nbPersons1, 0, nextPauseGourmande);
+var menu = new Step('menu', nbPersons2, 0, nextMenu);
 // VARIABLES
 var erreur = false;
 var step = 0;
