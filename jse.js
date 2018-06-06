@@ -5,6 +5,8 @@ console.clear()
 var nextPro = ['nbPersons1', 'nbPersons2'];
 var nextNbPersons1 = 'pauseGourmande';
 var nextNbPersons2 = 'menu';
+var nextPauseGourmande = 'none';
+var nextMenu = 'none';
 
 // CLASS
 function Step(idName, prevStep, formType, nextStep) {
@@ -24,28 +26,47 @@ function Step(idName, prevStep, formType, nextStep) {
 
   this.nextStep = function() { //Etape Suivante
     if(nextStep != 'none') {
-      this.hideBlockCSS();
       var info = this.getInfo();
-      info = nextStep[info];
-      info = eval(info);
-      info.showBlockCSS();
+      if (formType == 0) {
+        info = eval(nextStep[info]);
+        this.hideBlockCSS();
+        info.showBlockCSS();
+      } else if (formType == 1){
+        if (info == 1){
+          this.hideBlockCSS();
+          info = eval(nextStep);
+          info.showBlockCSS();
+        } else {
+          //Afficher que la valeur est incorrecte
+          //NE PAS INCREMENTER LE COMPTEUR 'step'
+        }
+      }
       activeStep = info;
       step += 1;
     }
   }
 
-  this.getInfo = function() {
+  this.getInfo = function() { //Récupération des informations du formulaire
     var inputs;
+    var formValue;
     if (formType == 0){
       inputs = document.getElementsByName(idName);
       inputsLength = inputs.length;
       for (var i = 0; i < inputsLength; i++) {
         if (inputs[i].type === 'radio' && inputs[i].checked) {
+          //récupérer la value du bouton dans 'formValue'
+          //insérer 'formValue' dans le tableau des valeur
           return i;
         }
       }
     } else if (formType == 1) {
-      //getter du form de type number
+      //vérifier si le nombre indiqué et correct (min, max) = return 1
+      formValue = document.getElementsByName(idName);
+      formValue = formValue[0].value;
+      return 1;
+      //insérer 'formvalue' dans le tableau des valeur
+
+      //sinon = return 0
     }
   }
 
@@ -62,12 +83,15 @@ function Step(idName, prevStep, formType, nextStep) {
 
 //INSTANCES
 var pro = new Step('pro', 'none', 0, nextPro);
-var nbPersons1 = new Step('nbPersons', pro, 0, nextNbPersons1);
-var nbPersons2 = new Step('nbPersons', pro, 0, nextNbPersons2);
+var nbPersons1 = new Step('nbPersons', pro, 1, nextNbPersons1);
+var nbPersons2 = new Step('nbPersons', pro, 1, nextNbPersons2);
+var pauseGourmande = new Step('pauseGourmande', nextNbPersons1, 0, nextPauseGourmande);
+var menu = new Step('menu', nextNbPersons2, 0, nextMenu);
 // VARIABLES
 var erreur = false;
 var step = 0;
 var activeStep = pro;
+var valuesTab;
 
 //FONCTIONS
 function next() {
@@ -87,33 +111,6 @@ function testScript2() {
 }
 
 //-------------------------------------------------------------------------------------------------------------------
-
-function checkPro() {
-  if (step == 0){
-      pro.style.display = 'none';
-      nbPersons.style.display = 'block';
-      step = step + 1;
-      var id = 0;
-      var info = getPro();
-      insertTab(id, info);
-  } else {
-      pro.style.display = 'block';
-      nbPersons.style.display = 'none';
-      step = step - 1;
-  }
-}
-
-function getPro() {
-  var info;
-  var inputs = document.getElementsByName("pro");
-  inputsLength = inputs.length;
-  for (var i = 0; i < inputsLength; i++) {
-    if (inputs[i].type === 'radio' && inputs[i].checked) {
-        info = String(inputs[i].value);
-    }
-  }
-  return info;
-}
 
 function insertTab(id, info) {
   stepTab.push(info);

@@ -15,11 +15,11 @@
             <li id='listMenu'>...</li>
         </ul><br>
         <!-- Etapes -->
-        <form method="post" action="traitement.php">
+        <form method="post" action="traitement.php"> <!-- /!\ Valide le formulaire lorsque l'on appui sur entrée -->
             <div class="Step" id="pro">
                 <p> Etes-vous professionnel ou particulier ? </p>
-                <input type="radio" name="pro" value="1" checked/> Particulier<br>
-                <input type="radio" name="pro" value="2" /> Professionnel<br>
+                <input type="radio" name="pro" value="particulier" checked/> Particulier<br>
+                <input type="radio" name="pro" value="professionnel" /> Professionnel<br>
                 <br>
                 <input type="button" value="Suivant" onclick="next();" /><br>
                 <br>
@@ -27,9 +27,8 @@
             
             <div class="Step" id="nbPersons">
                 <p> Combien de personnes êtes-vous ? </p>
-                <input id='NbrPersonnes' type="number" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
+                <input type="number" name="nbPersons" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
                 <br>
-                <!-- <button class="Validation" onclick="ChoixNbrPersonnes()">Valider</button> -->
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" />
                 <p id='PersonneDevis' ></p>
