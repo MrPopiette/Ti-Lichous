@@ -1,33 +1,37 @@
 
 console.clear()
 
+// VARIABLES
 var erreur = false
-var activeStep = step1;
-// Tableaux 'formTab'
-var nextPro = ['nbPersons1', 'nbPersons2'];
+var step = 0;
+var activeStep = pro;
+// ----- Tableaux 'formTab' -----
+var nextPro = [Object(nbPersons1), Object(nbPersons2)];
+// var nextPro = ['nbPersons1', 'nbPersons2'];
 var nextNbPersons1 = 'pauseGourmande';
 var nextNbPersons2 = 'menu';
 
-// Class 'Step'
+// CLASS
 function Step(idName, prevStep, formType, formTab) {
   this.idName = idName;
   this.prevStep = prevStep;
   this.formType = formType; // 0 = Radiobouton  1 = Slider
   this.formTab = formTab;
 
-  this.prevStep = function() {
-    if(prevstep != none) {
+  this.prevStep = function() { //Etape Précédente
+    if(prevStep != none) {
       this.hideBlockCSS();
-      prevStep.showBlockCSS();  // A tester
+      prevStep.showBlockCSS();
     }
   }
 
-  this.nextStep = function() {
+  this.nextStep = function() { //Etape Suivante
     this.hideBlockCSS();
-    var info = getInfo();
+    var info = this.getInfo();
+    alert(info);
     info = formTab[info];
-    info = Object(info);
-    info.showBlockCSS();
+    console.log(info);
+    Object(info).showBlockCSS();
     activeStep = info;
   }
 
@@ -57,31 +61,25 @@ function Step(idName, prevStep, formType, formTab) {
   }
 }
 
+//INSTANCES
+var pro = new Step('pro', 'none', 0, nextPro);
+var nbPersons1 = new Step('nbPersons', 'pro', 0, nextNbPersons1);
+var nbPersons2 = new Step('nbPersons', 'pro', 0, nextNbPersons2);
 
-//* Affichage et camouflage des blocks
-//* Direction vers le block précédent
-//* Type de formulaire
-//* Choix du formulaire
-//Direction des choix du formulaire
-
-var step1 = new Step('pro', 'none', 0, nextPro);
-
+//FONCTIONS
 function next() {
-  Object(activeStep).nextStep();
+  pro.nextStep();
 }
 
-
-
 function testScript1() {
-  
-  step1.hideBlockCSS();
+  pro.hideBlockCSS();
 }
 
 function testScript2() {
-  step1.showBlockCSS();
+  pro.showBlockCSS();
 }
 
-//-----------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 
 function checkPro() {
   if (step == 0){
