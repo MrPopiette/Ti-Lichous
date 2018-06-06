@@ -27,11 +27,11 @@
             
             <div class="Step" id="nbPersons">
                 <p> Combien de personnes êtes-vous ? </p>
-                <input id='NbrPersonnes'  type="number" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
+                <input id='NbrPersonnes' type="number" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
                 <br>
                 <!-- <button class="Validation" onclick="ChoixNbrPersonnes()">Valider</button> -->
-                <input type="button" value="Précédent" onclick="checkPro();" />
-                <input type="button" value="Suivant" onclick="" />
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" />
                 <p id='PersonneDevis' ></p>
             </div>
             <br>
@@ -42,8 +42,8 @@
                 <input type="radio" name="pause" value="2" /> Apéritive
                 <input type="radio" name="pause" value="3" /> Demande personalisée<br>
                 <br>
-                <input type="button" value="Précédent" onclick="" />
-                <input type="button" value="Suivant" onclick="" /><br>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
                 <br>
             </div>
 
@@ -52,8 +52,8 @@
                 <input type="radio" name="menu" value="1" checked/> Lichouseries Sucrées/salées (A emporter)<br>
                 <input type="radio" name="menu" value="2" /> Menu crêpes (A domicile)<br>
                 <br>
-                <input type="button" value="Précédent" onclick="" />
-                <input type="button" value="Suivant" onclick="" /><br>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
                 <br>
             </div>
             <br>

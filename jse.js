@@ -1,37 +1,37 @@
 
 console.clear()
 
-// VARIABLES
-var erreur = false
-var step = 0;
-var activeStep = pro;
-// ----- Tableaux 'formTab' -----
+// ----- Tableaux 'nextStep' -----
 var nextPro = ['nbPersons1', 'nbPersons2'];
 var nextNbPersons1 = 'pauseGourmande';
 var nextNbPersons2 = 'menu';
 
 // CLASS
-function Step(idName, prevStep, formType, formTab) {
+function Step(idName, prevStep, formType, nextStep) {
   this.idName = idName;
   this.prevStep = prevStep;
-  this.formType = formType; // 0 = Radiobouton  1 = Slider
-  this.formTab = formTab;
+  this.formType = formType; // 0 = Radiobouton  1 = Number
+  this.nextStep = nextStep;
 
   this.prevStep = function() { //Etape Précédente
     if(prevStep != 'none') {
       this.hideBlockCSS();
       prevStep.showBlockCSS();
+      activeStep = prevStep;
+      step -= 1;
     }
   }
 
   this.nextStep = function() { //Etape Suivante
-    this.hideBlockCSS();
-    var info = this.getInfo();
-    info = formTab[info];
-    info = eval(info);
-    console.log(info);
-    info.showBlockCSS(); // Transformer le String en nom d'objet
-    activeStep = info;
+    if(nextStep != 'none') {
+      this.hideBlockCSS();
+      var info = this.getInfo();
+      info = nextStep[info];
+      info = eval(info);
+      info.showBlockCSS();
+      activeStep = info;
+      step += 1;
+    }
   }
 
   this.getInfo = function() {
@@ -39,13 +39,13 @@ function Step(idName, prevStep, formType, formTab) {
     if (formType == 0){
       inputs = document.getElementsByName(idName);
       inputsLength = inputs.length;
-        for (var i = 0; i < inputsLength; i++) {
-          if (inputs[i].type === 'radio' && inputs[i].checked) {
-            return i;
-          }
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          return i;
+        }
       }
     } else if (formType == 1) {
-      //getter du form de type slider
+      //getter du form de type number
     }
   }
 
@@ -64,10 +64,18 @@ function Step(idName, prevStep, formType, formTab) {
 var pro = new Step('pro', 'none', 0, nextPro);
 var nbPersons1 = new Step('nbPersons', pro, 0, nextNbPersons1);
 var nbPersons2 = new Step('nbPersons', pro, 0, nextNbPersons2);
+// VARIABLES
+var erreur = false;
+var step = 0;
+var activeStep = pro;
 
 //FONCTIONS
 function next() {
-  pro.nextStep();
+  activeStep.nextStep();
+}
+
+function prev() {
+  activeStep.prevStep();
 }
 
 function testScript1() {
