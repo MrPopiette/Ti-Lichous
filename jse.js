@@ -6,8 +6,7 @@ var erreur = false
 var step = 0;
 var activeStep = pro;
 // ----- Tableaux 'formTab' -----
-var nextPro = [Object(nbPersons1), Object(nbPersons2)];
-// var nextPro = ['nbPersons1', 'nbPersons2'];
+var nextPro = ['nbPersons1', 'nbPersons2'];
 var nextNbPersons1 = 'pauseGourmande';
 var nextNbPersons2 = 'menu';
 
@@ -19,7 +18,7 @@ function Step(idName, prevStep, formType, formTab) {
   this.formTab = formTab;
 
   this.prevStep = function() { //Etape Précédente
-    if(prevStep != none) {
+    if(prevStep != 'none') {
       this.hideBlockCSS();
       prevStep.showBlockCSS();
     }
@@ -28,10 +27,10 @@ function Step(idName, prevStep, formType, formTab) {
   this.nextStep = function() { //Etape Suivante
     this.hideBlockCSS();
     var info = this.getInfo();
-    alert(info);
     info = formTab[info];
+    info = eval(info);
     console.log(info);
-    Object(info).showBlockCSS();
+    info.showBlockCSS(); // Transformer le String en nom d'objet
     activeStep = info;
   }
 
@@ -63,8 +62,8 @@ function Step(idName, prevStep, formType, formTab) {
 
 //INSTANCES
 var pro = new Step('pro', 'none', 0, nextPro);
-var nbPersons1 = new Step('nbPersons', 'pro', 0, nextNbPersons1);
-var nbPersons2 = new Step('nbPersons', 'pro', 0, nextNbPersons2);
+var nbPersons1 = new Step('nbPersons', pro, 0, nextNbPersons1);
+var nbPersons2 = new Step('nbPersons', pro, 0, nextNbPersons2);
 
 //FONCTIONS
 function next() {
