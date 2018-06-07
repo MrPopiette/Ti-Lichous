@@ -33,15 +33,19 @@ function Step(idName, prevStep, formType, nextStep) {
         activeStep = formValue[0];
         insertValuesTab(step, formValue[1]);
       } else if (formType == 1){
-        //Vérifier si la valeur est correcte
-        this.hideBlockCSS();
-        insertValuesTab(step, formValue);
-        formValue = eval(nextStep);
-        formValue.showBlockCSS();
-        activeStep = formValue;
+        var min = parseInt(document.getElementsByName(idName)[0].min);
+        var max = parseInt(document.getElementsByName(idName)[0].max);
+        if (formValue >= min && formValue <= max) {
+          this.hideBlockCSS();
+          insertValuesTab(step, formValue);
+          formValue = eval(nextStep);
+          formValue.showBlockCSS();
+          activeStep = formValue;
+        } else {
+          alert("Entrez un nombre entre 8 et 60.");
+          step -= 1;
+        }
         
-        //Sinon, afficher que la valeur est incorrecte
-        //NE PAS INCREMENTER LE COMPTEUR 'step'
       }
       step += 1;
     }
@@ -60,11 +64,9 @@ function Step(idName, prevStep, formType, nextStep) {
         }
       }
     } else if (formType == 1) {
-      //vérifier si le nombre indiqué et correct (min, max) = return 1
       formValue = document.getElementsByName(idName);
       formValue = formValue[0].value;
       return formValue;
-      //sinon = return 0
     }
   }
 
