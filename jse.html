@@ -3,6 +3,7 @@
         <meta charset="utf-8">
         <title>Traiteur Ti Lichous</title>
         <script type="text/javascript" src="jse.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="media.css">
     </head>
     <body>
@@ -26,8 +27,9 @@
             </div>
             
             <div class="Step" id="nbPersons">
-                <p> Combien de personnes êtes-vous ? </p>
-                <input type="number" name="nbPersons" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
+                <p> Combien de personnes êtes-vous ? (Minimum 8 personnes)</p>
+                <input type="range" id="nbPersonsSlider" min=8 max=60 value=30>
+                <input type="number" id="nbPersonsNumber" name="nbPersons" min=8 max=60 value=30><br>
                 <br>
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" />
@@ -60,6 +62,8 @@
 
         <input type="button" value="Test Script 1" onclick="testScript1();" />
         <input type="button" value="Test Script 2" onclick="testScript2();" />
+
+        <script type="text/javascript" src="slider.js"></script>
 
         <script type="text/javascript"></script>
     </body>
