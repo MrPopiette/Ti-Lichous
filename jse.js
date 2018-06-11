@@ -45,7 +45,6 @@ function Step(idName, prevStep, formType, nextStep) {
           alert("Entrez un nombre entre 8 et 60.");
           step -= 1;
         }
-        
       }
       step += 1;
     }
@@ -108,7 +107,23 @@ function insertValuesTab(index, info) {
   if (index < valuesTabLength - 1) {
     valuesTab.splice(1, valuesTabLength);
   }
-  console.log(valuesTab);
+  displayList();
+}
+
+function displayList() {
+  for(var i = 0; i <= 3; i++){
+    var id = "list" + (i + 1);
+    if(valuesTab[i] != null) {
+      var listContent;
+      listContent = document.getElementById(id);
+      id = document.getElementById(id);
+      listContent.firstChild.data = valuesTab[i].charAt(0).toUpperCase() + valuesTab[i].substring(1).toLowerCase();
+      id.style.display = 'block';
+    } else {
+      id = document.getElementById(id);
+      id.style.display = 'none';
+    }
+  }
 }
 
 function testScript1() {

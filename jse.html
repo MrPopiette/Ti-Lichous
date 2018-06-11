@@ -10,10 +10,11 @@
         <h1>TRAITEUR</h1>
 
         <!-- Liste des étapes -->
-        <ul>
-            <li id='listPro'>...</li>
-            <li id='listNbPersonnes'>...</li>
-            <li id='listMenu'>...</li>
+        <ul id="List">
+            <li id='list1'>...</li>
+            <li id='list2'>...</li>
+            <li id='list3'>...</li>
+            <li id='list4'>...</li>
         </ul><br>
         <!-- Etapes -->
         <form method="post" action="traitement.php"> <!-- /!\ Valide le formulaire lorsque l'on appui sur entrée -->
@@ -23,19 +24,17 @@
                 <input type="radio" name="pro" value="professionnel" /> Professionnel<br>
                 <br>
                 <input type="button" value="Suivant" onclick="next();" /><br>
-                <br>
             </div>
             
             <div class="Step" id="nbPersons">
                 <p> Combien de personnes êtes-vous ? (Minimum 8 personnes)</p>
-                <input type="range" id="nbPersonsSlider" min=8 max=60 value=30>
-                <input type="number" id="nbPersonsNumber" name="nbPersons" min=8 max=60 value=30><br>
+                <input type="range" id="nbPersonsSlider" min=8 max=60 value=15>
+                <input type="number" id="nbPersonsNumber" name="nbPersons" min=8 max=60 value=15><br>
                 <br>
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" />
                 <p id='PersonneDevis' ></p>
             </div>
-            <br>
 
             <div class="Step" id="pauseGourmande">
                 <p> Pause gourmande : Sucrée ou apéritive </p>
@@ -45,7 +44,6 @@
                 <br>
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" /><br>
-                <br>
             </div>
 
             <div class="Step" id="menu">
@@ -55,10 +53,9 @@
                 <br>
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" /><br>
-                <br>
             </div>
-            <br>
         </form>
+        <br>
 
         <input type="button" value="Test Script 1" onclick="testScript1();" />
         <input type="button" value="Test Script 2" onclick="testScript2();" />
