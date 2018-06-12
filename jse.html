@@ -3,64 +3,115 @@
         <meta charset="utf-8">
         <title>Traiteur Ti Lichous</title>
         <script type="text/javascript" src="jse.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="media.css">
     </head>
     <body>
-        <h1>TRAITEUR</h1>
+        <h1>SERVICE TRAITEUR</h1>
 
         <!-- Liste des étapes -->
-        <ul>
-            <li id='listPro'>...</li>
-            <li id='listNbPersonnes'>...</li>
-            <li id='listMenu'>...</li>
+        <ul id="List">
+            <li id='list1'>...</li>
+            <li id='list2'>...</li>
+            <li id='list3'>...</li>
+            <li id='list4'>...</li>
         </ul><br>
         <!-- Etapes -->
-        <form method="post" action="traitement.php">
+        <form method="post" action="traitement.php"> <!-- /!\ Valide le formulaire lorsque l'on appui sur entrée -->
             <div class="Step" id="pro">
-                <p> Etes-vous professionnel ou particulier ? </p>
-                <input type="radio" name="pro" value="1" checked/> Particulier<br>
-                <input type="radio" name="pro" value="2" /> Professionnel<br>
+                <p><b> Etes-vous professionnel ou particulier ? </b></p>
+                <input type="radio" name="pro" value="Particulier" checked/> Particulier<br>
+                <input type="radio" name="pro" value="Professionnel" /> Professionnel<br>
                 <br>
                 <input type="button" value="Suivant" onclick="next();" /><br>
-                <br>
             </div>
             
-            <div class="Step" id="nbPersons">
-                <p> Combien de personnes êtes-vous ? </p>
-                <input id='NbrPersonnes'  type="number" min="8" max="100" placeholder="Nombre de personnes (minimum 8)" required><br>
+            <div class="Step" id="nbPersons1">
+                <p><b> Combien de personnes êtes-vous ? (Minimum 15 personnes) </b></p>
+                <input type="range" id="nbPersonsSlider" min=15 max=60 value=20>
+                <input type="number" id="nbPersonsNumber" name="nbPersons1" min=8 max=60 value=15><br>
                 <br>
-                <!-- <button class="Validation" onclick="ChoixNbrPersonnes()">Valider</button> -->
-                <input type="button" value="Précédent" onclick="checkPro();" />
-                <input type="button" value="Suivant" onclick="" />
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" />
                 <p id='PersonneDevis' ></p>
             </div>
-            <br>
 
-            <div class="Step" id="pauseGourmande">
-                <p> Pause gourmande : Sucrée ou apéritive </p>
-                <input type="radio" name="pause" value="1" checked/> Sucrée 
-                <input type="radio" name="pause" value="2" /> Apéritive
-                <input type="radio" name="pause" value="3" /> Demande personalisée<br>
+            <div class="Step" id="nbPersons2">
+                <p><b> Combien de personnes êtes-vous ? (Minimum 8 personnes) </b></p>
+                <input type="range" id="nbPersonsSlider" min=8 max=60 value=15>
+                <input type="number" id="nbPersonsNumber" name="nbPersons2" min=8 max=60 value=15><br>
                 <br>
-                <input type="button" value="Précédent" onclick="" />
-                <input type="button" value="Suivant" onclick="" /><br>
-                <br>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" />
+                <p id='PersonneDevis' ></p>
             </div>
 
-            <div class="Step" id="menu">
-                <p> ...... </p>
-                <input type="radio" name="menu" value="1" checked/> Lichouseries Sucrées/salées (A emporter)<br>
-                <input type="radio" name="menu" value="2" /> Menu crêpes (A domicile)<br>
+            <div class="Step" id="cartePro">
+                <p><b> Pause gourmande : </b></p>
+                <input type="radio" name="cartePro" value="Pause Gourmande Sucrée" checked/> Sucrée<br>
+                <input type="radio" name="cartePro" value="Pause Gourmande Apéritive" /> Apéritive<br>
                 <br>
-                <input type="button" value="Précédent" onclick="" />
-                <input type="button" value="Suivant" onclick="" /><br>
+                <input type="button" value="Demande personnalisée" onclick="" /><br>
                 <br>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
             </div>
-            <br>
+
+            <div class="Step" id="carteParticulier">
+                <p><b> Prestations : </b></p>
+                <input type="radio" name="carteParticulier" value="Lichouseries" checked/> Lichouseries Sucrées/salées (À emporter à partir de 8 personnes)<br>
+                <input type="radio" name="carteParticulier" value="Menus Crêpes" /> Menu crêpes (À domicile à partir de 20 personnes)<br>
+                <br>
+                <input type="button" value="Demande personnalisée" onclick="" /><br>
+                <br>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
+            </div>
+
+            <div class="Step" id="pauseGourmandeSucree">
+                <p><b> Pause Gourmande Sucrée </b></p>
+                <p> [Choix] </p>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
+            </div>
+
+            <div class="Step" id="pauseGourmandeAperitive">
+                <p><b> Pause Gourmande Apéritive </b></p>
+                <p> [Choix] </p>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
+            </div>
+
+            <div class="Step" id="lichouseries">
+                <p><b> Lichouseries </b></p>
+                <p> [Choix] </p>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
+            </div>
+
+            <div class="Step" id="menusCrepes">
+                <p><b> Menus Crêpes </b></p>
+                <p> [Choix] </p>
+                <input type="button" value="Précédent" onclick="prev();" />
+                <input type="button" value="Suivant" onclick="next();" /><br>
+            </div>
+
+            <div class="Step" id="validation">
+                <p><b> Texte </b></p>
+                
+                <input type="button" value="Valider" onclick="" />
+            </div>
         </form>
+        <br>
 
-        <input type="button" value="Test Script 1" onclick="testScript1();" />
-        <input type="button" value="Test Script 2" onclick="testScript2();" />
+
+
+        <p>Pour tout renseignement sur le service traiteur ou le restaurant, n'hésitez pas à nous contacter au 02 40 35 44 60 ou par mail à <a href="mailto:til&#105;c&#104;&#111;&#117;&#115;&#64;g&#109;&#97;&#105;&#108;&#46;&#99;&#111;m"  class="mailto-link">tilichous@gmail.com</a>.</p>
+
+        <!-- <input type="button" value="Test Script 1" onclick="testScript1();" />
+        <input type="button" value="Test Script 2" onclick="testScript2();" /> -->
+
+        <script type="text/javascript" src="slider.js"></script>
 
         <script type="text/javascript"></script>
     </body>

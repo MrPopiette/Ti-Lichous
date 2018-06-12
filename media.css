@@ -1,15 +1,59 @@
+/* List */
+
+#list1 {
+    display: none;
+}
+
+#list2 {
+    display: none;
+}
+
+#list3 {
+    display: none;
+}
+
+#list4 {
+    display: none;
+}
+
+/* Step */
+
 #pro {
     display: block;
 }
 
-#nbPersons {
+#nbPersons1 {
     display: none;
 }
 
-#pauseGourmande {
+#nbPersons2 {
     display: none;
 }
 
-#menu {
+#cartePro {
+    display: none;
+}
+
+#carteParticulier {
+    display: none;
+}
+
+#pauseGourmandeSucree {
+    display: none;
+}
+
+#pauseGourmandeAperitive {
+    display: none;
+}
+
+#lichouseries {
+    display: none;
+}
+
+#menusCrepes {
+    display: none;
+}
+
+#validation {
     display: none;
 }
