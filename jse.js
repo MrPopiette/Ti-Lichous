@@ -2,16 +2,23 @@ console.clear()
 
 // ----- Tableaux 'nextStep' -----
 var nextPro = ['nbPersons1', 'nbPersons2'];
-var nextNbPersons1 = 'pauseGourmande';
-var nextNbPersons2 = 'menu';
-var nextPauseGourmande = 'none';
-var nextMenu = 'none';
+var nextNbPersons1 = 'carteParticulier';
+var nextNbPersons2 = 'cartePro';
+// var nextCartePro = 'none';
+// var nextCarteParticulier = 'none';
+var nextCartePro = ['pauseGourmandeSucree','pauseGourmandeAperitive'];
+var nextCarteParticulier = ['lichouseries','menusCrepes'];
+var nextPauseGourmandeSucree = 'validation';
+var nextPauseGourmandeAperitive = 'validation';
+var nextLichouseries = 'validation';
+var nextMenusCrepes = 'validation';
+var nextValidation = 'none';
 
 // CLASS
 function Step(idName, prevStep, formType, nextStep) {
   this.idName = idName;
   this.prevStep = prevStep;
-  this.formType = formType; // 0 = Radiobouton  1 = Number
+  this.formType = formType; // 0 = Radiobouton  1 = Number  2 = Liste des produits  3 = Validation
   this.nextStep = nextStep;
 
   this.prevStep = function() { //Etape Précédente
@@ -45,6 +52,8 @@ function Step(idName, prevStep, formType, nextStep) {
           alert("Entrez un nombre entre 8 et 60.");
           step -= 1;
         }
+      } else if (formType == 2){
+
       }
       step += 1;
     }
@@ -82,10 +91,20 @@ function Step(idName, prevStep, formType, nextStep) {
 
 //INSTANCES
 var pro = new Step('pro', 'none', 0, nextPro);
-var nbPersons1 = new Step('nbPersons', pro, 1, nextNbPersons1);
-var nbPersons2 = new Step('nbPersons', pro, 1, nextNbPersons2);
-var pauseGourmande = new Step('pauseGourmande', nbPersons1, 0, nextPauseGourmande);
-var menu = new Step('menu', nbPersons2, 0, nextMenu);
+
+var nbPersons1 = new Step('nbPersons1', pro, 1, nextNbPersons1);
+var nbPersons2 = new Step('nbPersons2', pro, 1, nextNbPersons2);
+
+var carteParticulier = new Step('carteParticulier', nbPersons1, 0, nextCarteParticulier);
+var cartePro = new Step('cartePro', nbPersons2, 0, nextCartePro);
+
+var lichouseries = new Step('lichouseries', carteParticulier, 2, nextLichouseries);
+var menusCrepes = new Step('menusCrepes', carteParticulier, 2, nextMenusCrepes);
+var pauseGourmandeSucree = new Step('pauseGourmandeSucree', cartePro, 2, nextPauseGourmandeSucree);
+var pauseGourmandeAperitive = new Step('pauseGourmandeAperitive', cartePro, 2, nextPauseGourmandeAperitive);
+
+var validation = new Step('validation', 'none', 1, nextValidation);
+
 // VARIABLES
 var erreur = false;
 var step = 0;
@@ -93,20 +112,20 @@ var activeStep = pro;
 var valuesTab = new(Array);
 
 //FONCTIONS
-function next() {
+function next() { //Etape suivante
   activeStep.nextStep();
 }
 
-function prev() {
+function prev() { // Etape précédente
   activeStep.prevStep();
 }
 
 function insertValuesTab(index, info) {
-  valuesTab[index] = info;
   valuesTabLength = valuesTab.length;
   if (index < valuesTabLength - 1) {
     valuesTab.splice(1, valuesTabLength);
   }
+  valuesTab[index] = info;
   displayList();
 }
 
