@@ -16,6 +16,10 @@
     display: none;
 }
 
+#list5 {
+    display: none;
+}
+
 /* Step */
 
 #pro {
@@ -56,4 +60,22 @@
 
 #validation {
     display: none;
+}
+
+/* Style */
+
+#product {
+    background-color: white;
+    width: 30%;
+    margin: 0.5%;
+    padding: 0.5%;
+    float: left;
+    border: dotted;
+    border-color: gray;
+}
+
+.navButton {
+    /* padding : 100%; */
+    float: none;
+    clear: both;
 }

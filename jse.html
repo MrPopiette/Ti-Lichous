@@ -15,6 +15,7 @@
             <li id='list2'>...</li>
             <li id='list3'>...</li>
             <li id='list4'>...</li>
+            <li id='list5'>...</li>
         </ul><br>
         <!-- Etapes -->
         <form method="post" action="traitement.php"> <!-- /!\ Valide le formulaire lorsque l'on appui sur entrée -->
@@ -68,20 +69,6 @@
                 <input type="button" value="Suivant" onclick="next();" /><br>
             </div>
 
-            <div class="Step" id="pauseGourmandeSucree">
-                <p><b> Pause Gourmande Sucrée </b></p>
-                <p> [Choix] </p>
-                <input type="button" value="Précédent" onclick="prev();" />
-                <input type="button" value="Suivant" onclick="next();" /><br>
-            </div>
-
-            <div class="Step" id="pauseGourmandeAperitive">
-                <p><b> Pause Gourmande Apéritive </b></p>
-                <p> [Choix] </p>
-                <input type="button" value="Précédent" onclick="prev();" />
-                <input type="button" value="Suivant" onclick="next();" /><br>
-            </div>
-
             <div class="Step" id="lichouseries">
                 <p><b> Lichouseries </b></p>
                 <p> [Choix] </p>
@@ -96,9 +83,60 @@
                 <input type="button" value="Suivant" onclick="next();" /><br>
             </div>
 
+            <div class="Step" id="pauseGourmandeSucree">
+                <p><b> Pause Gourmande Sucrée </b></p>
+                <div id="Product">
+                    <input type="radio" name="Product" value="1" checked/>
+                    <p> Café, thé, jus de pommes ou raisins<br>
+                        Triskels au chocolat<br>
+                        Meringues</p>
+                    <p> 3.50€ HT / personne</p>
+                </div>
+                <div id="Product">
+                    <input type="radio" name="Product" value="2"/>
+                    <p> Café, thé, jus de pommes ou raisins<br>
+                        Gâteau breton<br>
+                        Triskels au chocolat</p>
+                    <p> 4.00€ HT / personne</p>
+                </div>
+                <div id="Product">
+                    <input type="radio" name="Product" value="3"/>
+                    <p> Café, thé, jus de pommes ou raisins<br>
+                        Gâteau breton<br>
+                        Triskels au chocolat
+                        Crêpes roulées</p>
+                    <p> 6.00€ HT / personne</p>
+                </div><br>
+                <div class="navButton">
+                    <input type="button" value="Précédent" onclick="prev();" />
+                    <input type="button" value="Suivant" onclick="next();" />
+                </div>
+            </div>
+
+            <div class="Step" id="pauseGourmandeAperitive">
+                <p><b> Pause Gourmande Apéritive </b></p>
+                <div id="Product">
+                    <input type="radio" name="Product" value="1" checked/>
+                    <p> Cidre, vin blanc, jus de pommes<br>
+                        Assortiment de crêpes roulées salées</p>
+                    <p> 5.00€ HT / personne</p>
+                </div>
+                <div id="Product">
+                    <input type="radio" name="Product" value="2"/>
+                    <p> Cidre, vin blanc, jus de raisins<br>
+                        Assortiment de lichouseries sucrées et salées</p>
+                    <p> 7.00€ HT / personne </p>
+                </div><br>
+                <div class="navButton">
+                    <input type="button" value="Précédent" onclick="prev();" />
+                    <input type="button" value="Suivant" onclick="next();" />
+                </div>
+            </div>
+
             <div class="Step" id="validation">
                 <p><b> Texte </b></p>
                 
+                <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Valider" onclick="" />
             </div>
         </form>
