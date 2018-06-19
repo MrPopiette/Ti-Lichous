@@ -18,7 +18,7 @@ var nextValidation = 'none';
 function Step(idName, prevStep, formType, nextStep) {
   this.idName = idName;
   this.prevStep = prevStep;
-  this.formType = formType; // 0 = Radiobouton  1 = Number  2 = Liste des produits  3 = Validation    -> Ajouter date
+  this.formType = formType; // 0 = Radiobouton  1 = Number  2/3 = Liste des produits  4 = Validation
   this.nextStep = nextStep;
 
   this.prevStep = function() { //Etape Précédente
@@ -27,6 +27,7 @@ function Step(idName, prevStep, formType, nextStep) {
       prevStep.showBlockCSS();
       activeStep = prevStep;
       step -= 1;
+      //condition pour validation
     }
   }
 
@@ -45,21 +46,28 @@ function Step(idName, prevStep, formType, nextStep) {
         if (formValue >= min && formValue <= max) {
           this.hideBlockCSS();
           insertValuesTab(step, formValue);
-          formValue = eval(nextStep);
-          formValue.showBlockCSS();
-          activeStep = formValue;
+          eval(nextStep).showBlockCSS();
+          activeStep = eval(nextStep);
+          nbPersons = formValue;
         } else {
           alert("Entrez un nombre entre 8 et 60.");
           step -= 1;
         }
       } else if (formType == 2){ //2 = Liste des produits PARTICULIERS
-        
-
-
-      } else if (formType == 3){ //3 = Liste des produits PROS
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         //insérer les valeurs
+        eval(nextStep).showBlockCSS();
+        activeStep = eval(nextStep);
+      } else if (formType == 3){ //3 = Liste des produits PROS
+        insertValuesTab(step, 'Choix de la commande');
+        this.hideBlockCSS();
+        var index = 0;
+        var quantity = nbPersons;
+        insertProductTab(index, quantity, formValue);
+        console.log(productsTab);
+        eval(nextStep).showBlockCSS();
+        activeStep = eval(nextStep);
       } else if (formtype == 4){ //Validation
 
       }
@@ -83,6 +91,17 @@ function Step(idName, prevStep, formType, nextStep) {
       formValue = document.getElementsByName(idName);
       formValue = formValue[0].value;
       return formValue;
+    } else if (formType == 2) { //2 = Liste des produits PARTICULIERS
+      
+    } else if (formType == 3) { //3 = Liste des produits PROS (choix unique)
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          formValue = [inputs[i].value];
+          return formValue;
+        }
+      }
     }
   }
 
@@ -117,6 +136,8 @@ var validation = new Step('validation', 'none', 1, nextValidation);
 var erreur = false;
 var step = 0;
 var activeStep = pro;
+var nbPersons;
+var category;
 var valuesTab = new(Array);
 var productsTab = new(Array);
 
@@ -136,6 +157,10 @@ function insertValuesTab(index, info) {
   }
   valuesTab[index] = info;
   displayList();
+}
+
+function insertProductTab(index, quantity, info){
+  productsTab[index] = [quantity, info];
 }
 
 function displayList() {
