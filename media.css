@@ -64,18 +64,46 @@
 
 /* Style */
 
-#menu {
+.menu {
     background-color: white;
-    width: 30%;
+    width: 95%;
     margin: 0.5%;
-    padding: 0.5%;
+    padding: 1%;
     float: left;
     border: dotted;
     border-color: gray;
 }
 
+.menu, #div1{
+    width: 95.1%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
+.menu, #div2{
+    width: 45.8%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
+.menu, #div3{
+    width: 29.4%;
+    margin: 0.5%;
+    padding: 1%;
+}
+.menu, #div4{
+    width: 21.2%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
 .navButton {
     /* padding : 100%; */
+    float: none;
+    clear: both;
+}
+
+.subcategory {
     float: none;
     clear: both;
 }

@@ -71,41 +71,61 @@
             </div>
 
             <div class="Step" id="lichouseries">
-                <p><b> Lichouseries </b></p>
-                <p> [Choix] </p>
+                <p class="category"><b> Lichouseries </b></p>
+                <p> Assortiment de lichouseries : à partir de 3.00€/pers.<br>
+                <br>
+                <input type="radio" name="product" value="1" /> Petit choux de blé noir garni         1.00€/pièce<br>
+                <input type="radio" name="product" value="2" /> Blini garni                           1.00€/pièce<br>
+                <input type="radio" name="product" value="3" /> Mini-roulées de blé noir              15.00€/plateau de 20 pièces<br>
+                <br>
+                <input type="radio" name="product" value="4" /> Tuiles                  5.00€/100g<br>
+                <input type="radio" name="product" value="5" /> Triskels au chocolat    3.00€/100g<br>
+                <input type="radio" name="product" value="6" /> Truffes                 6.00€/100g<br>
+                <input type="radio" name="product" value="7" /> Meringues               3.50€/100g<br>
+                <br>
+                <input type="radio" name="product" value="8" /> Kig ha farz                                 15.00€/pers.<br>
+                <input type="radio" name="product" value="9" /> Potée de pouldrezic (aux choux)             12.00€/pers.<br>
+                <input type="radio" name="product" value="10" /> Potée Guérandaise (fèves, lard, saucisses) 12.00€/pers.<br>
+                <input type="radio" name="product" value="11" /> Frigousse de boeuf                         12.00€/pers.<br>
+                <input type="radio" name="product" value="12" /> Cotriade ou matelote                       15.00€/pers.<br>
+                <input type="radio" name="product" value="13" /> Poulet au cidre                            12.00€/pers.<br>
+                <input type="radio" name="product" value="14" /> Jambon à l'os (environ 30 pers.)           xx.00€/pers.<br>
+                <br>
+                <input type="radio" name="product" value="15" /> Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)<br>
+                <br>
                 <input type="button" value="Précédent" onclick="prev();" />
                 <input type="button" value="Suivant" onclick="next();" /><br>
             </div>
 
             <div class="Step" id="menusCrepes">
-                <p><b> Menus Crêpes </b></p>
-                <p> Formules Classiques </p>
-                <div id="menu">
+                <p"category"><b> Menus Crêpes </b></p>
+                <p class="subcategory"> Formules Classiques </p>
+                <div class="menu" id="div4">
                     <input type="radio" name="menu" value="1"/>
                     <p> 1 galette blé noir<br>
                         2 crêpes froment</p>
                     <p> 12€ / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div4">
                     <input type="radio" name="menu" value="1"/>
                     <p> 2 galette blé noir<br>
                         2 crêpes froment</p>
                     <p> 15€ / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div4">
                     <input type="radio" name="menu" value="1"/>
                     <p> galettes blé noir à volonté<br>
                         crêpes froment à volonté</p>
                     <p> 20€ / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div4">
                     <input type="radio" name="menu" value="1"/>
                     <p> 1 galette blé noir<br>
                         1 crêpes froment</p>
                     <p> 7€ / personne</p>
                 </div>
-                <p> Formules Prestige </p>
-                <div id="menu">
+                <p class="subcategory"> Formules Prestige </p>
+                <div class="menu" id="div1">
                     <input type="radio" name="menu" value="1"/>
                     <p> Assortiment de lichouseries<br>
                         2 galettes blé noir<br>
@@ -113,7 +133,7 @@
                         2 crêpes froment</p>
                     <p> 32€ / personne</p>
                 </div>
-                <p> Boissons </p>
+                <p class="subcategory"> Boissons </p>
                 <input type="radio" name="product" value="1" /> Cidre artisanal Kerné         75cl           4.50€<br>
                 <input type="radio" name="product" value="2" /> Cidre fermier Melenig         75cl           4.50€<br>
                 <input type="radio" name="product" value="3" /> Cidre Kerné                   Pression/l     5.00€<br>
@@ -124,22 +144,22 @@
             </div>
 
             <div class="Step" id="pauseGourmandeSucree">
-                <p><b> Pause Gourmande Sucrée </b></p>
-                <div id="menu">
+                <p class="category"><b> Pause Gourmande Sucrée </b></p>
+                <div class="menu" id="div3">
                     <input type="radio" name="pauseGourmandeSucree" value="1" checked/>
                     <p> Café, thé, jus de pommes ou raisins<br>
                         Triskels au chocolat<br>
                         Meringues</p>
                     <p> 3.50€ HT / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div3">
                     <input type="radio" name="pauseGourmandeSucree" value="2"/>
                     <p> Café, thé, jus de pommes ou raisins<br>
                         Gâteau breton<br>
                         Triskels au chocolat</p>
                     <p> 4.00€ HT / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div3">
                     <input type="radio" name="pauseGourmandeSucree" value="3"/>
                     <p> Café, thé, jus de pommes ou raisins<br>
                         Gâteau breton<br>
@@ -154,14 +174,14 @@
             </div>
 
             <div class="Step" id="pauseGourmandeAperitive">
-                <p><b> Pause Gourmande Apéritive </b></p>
-                <div id="menu">
+                <p class="category"><b> Pause Gourmande Apéritive </b></p>
+                <div class="menu" id="div2">
                     <input type="radio" name="pauseGourmandeAperitive" value="1" checked/>
                     <p> Cidre, vin blanc, jus de pommes<br>
                         Assortiment de crêpes roulées salées</p>
                     <p> 5.00€ HT / personne</p>
                 </div>
-                <div id="menu">
+                <div class="menu" id="div2">
                     <input type="radio" name="pauseGourmandeAperitive" value="2"/>
                     <p> Cidre, vin blanc, jus de raisins<br>
                         Assortiment de lichouseries sucrées et salées</p>

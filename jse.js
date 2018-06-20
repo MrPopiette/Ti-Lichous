@@ -57,6 +57,7 @@ function Step(idName, prevStep, formType, nextStep) {
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         //insérer les valeurs
+        
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
       } else if (formType == 3){ //3 = Liste des produits PROS
@@ -65,7 +66,6 @@ function Step(idName, prevStep, formType, nextStep) {
         var index = 0;
         var quantity = nbPersons;
         insertProductTab(index, quantity, formValue);
-        console.log(productsTab);
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
       } else if (formtype == 4){ //Validation
