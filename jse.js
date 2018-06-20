@@ -24,10 +24,14 @@ function Step(idName, prevStep, formType, nextStep) {
   this.prevStep = function() { //Etape Précédente
     if(prevStep != 'none') {
       this.hideBlockCSS();
-      prevStep.showBlockCSS();
-      activeStep = prevStep;
+      if (formType == 4) {
+        preValidation.showBlockCSS();
+        activeStep = preValidation;
+      } else {
+        prevStep.showBlockCSS();
+        activeStep = prevStep;
+      }
       step -= 1;
-      //condition pour validation
     }
   }
 
@@ -57,17 +61,22 @@ function Step(idName, prevStep, formType, nextStep) {
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         //insérer les valeurs
-        
+
+        preValidation = activeStep;
         eval(nextStep).showBlockCSS();
-        activeStep = eval(nextStep);
+        activeStep = eval(nextStep); 
+        console.log('preValidation : ', preValidation);
       } else if (formType == 3){ //3 = Liste des produits PROS
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         var index = 0;
         var quantity = nbPersons;
         insertProductTab(index, quantity, formValue);
+        console.log(productsTab);
+        preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
+        console.log('preValidation : ', preValidation);
       } else if (formtype == 4){ //Validation
 
       }
@@ -130,7 +139,7 @@ var menusCrepes = new Step('menusCrepes', carteParticulier, 2, nextMenusCrepes);
 var pauseGourmandeSucree = new Step('pauseGourmandeSucree', cartePro, 3, nextPauseGourmandeSucree);
 var pauseGourmandeAperitive = new Step('pauseGourmandeAperitive', cartePro, 3, nextPauseGourmandeAperitive);
 
-var validation = new Step('validation', 'none', 1, nextValidation);
+var validation = new Step('validation', 'validation', 4, nextValidation);
 
 // VARIABLES
 var erreur = false;
@@ -138,6 +147,7 @@ var step = 0;
 var activeStep = pro;
 var nbPersons;
 var category;
+var preValidation;
 var valuesTab = new(Array);
 var productsTab = new(Array);
 
