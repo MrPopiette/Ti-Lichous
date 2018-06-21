@@ -61,22 +61,24 @@ function Step(idName, prevStep, formType, nextStep) {
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         //insérer les valeurs
-
+        var formValueLength = formValue.length;
+        var quantity = nbPersons;
+        for (var i = 0; i < formValueLength; i++) {
+          insertProductTab(i, quantity, formValue[i])
+        }
+        console.log(productsTab);
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
-        activeStep = eval(nextStep); 
-        console.log('preValidation : ', preValidation);
+        activeStep = eval(nextStep);
       } else if (formType == 3){ //3 = Liste des produits PROS
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         var index = 0;
         var quantity = nbPersons;
         insertProductTab(index, quantity, formValue);
-        console.log(productsTab);
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
-        console.log('preValidation : ', preValidation);
       } else if (formtype == 4){ //Validation
 
       }
@@ -93,25 +95,33 @@ function Step(idName, prevStep, formType, nextStep) {
       for (var i = 0; i < inputsLength; i++) {
         if (inputs[i].type === 'radio' && inputs[i].checked) {
           formValue = [i ,inputs[i].value];
-          return formValue;
         }
       }
     } else if (formType == 1) { //1 = Number
       formValue = document.getElementsByName(idName);
       formValue = formValue[0].value;
-      return formValue;
     } else if (formType == 2) { //2 = Liste des produits PARTICULIERS
-      
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+      formValue = new(Array);
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          formValue.push(inputs[i].value);
+        }
+        if (inputs[i].type === 'checkbox' && inputs[i].checked) {
+          formValue.push(inputs[i].value);
+        }
+      }
     } else if (formType == 3) { //3 = Liste des produits PROS (choix unique)
       inputs = document.getElementsByName(idName);
       inputsLength = inputs.length;
       for (var i = 0; i < inputsLength; i++) {
         if (inputs[i].type === 'radio' && inputs[i].checked) {
           formValue = [inputs[i].value];
-          return formValue;
         }
       }
     }
+    return formValue;
   }
 
   this.showBlockCSS = function () {
@@ -187,12 +197,4 @@ function displayList() {
       id.style.display = 'none';
     }
   }
-}
-
-function testScript1() {
-  pro.hideBlockCSS();
-}
-
-function testScript2() {
-  pro.showBlockCSS();
 }
