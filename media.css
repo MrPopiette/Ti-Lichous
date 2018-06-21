@@ -107,3 +107,19 @@
     float: none;
     clear: both;
 }
+
+/* .tabProd {
+    width : 700px;
+} */
+
+td {
+    width : 300px;
+}
+
+.quantityDrink {
+    width : 120px;
+}
+
+[type="checkbox"] {
+    float: left
+}
