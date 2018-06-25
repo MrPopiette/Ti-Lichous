@@ -63,6 +63,7 @@ function Step(idName, prevStep, formType, nextStep) {
         //insérer les valeurs
         var formValueLength = formValue.length;
         var quantity = nbPersons;
+        EraseProductTab();
         for (var i = 0; i < formValueLength; i++) {
           insertProductTab(i, quantity, formValue[i])
         }
@@ -70,17 +71,20 @@ function Step(idName, prevStep, formType, nextStep) {
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
+        displayProducts();
       } else if (formType == 3){ //3 = Liste des produits PROS
         insertValuesTab(step, 'Choix de la commande');
         this.hideBlockCSS();
         var index = 0;
         var quantity = nbPersons;
+        EraseProductTab();
         insertProductTab(index, quantity, formValue);
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
+        displayProducts();
       } else if (formtype == 4){ //Validation
-
+        
       }
       step += 1;
     }
@@ -161,6 +165,12 @@ var preValidation;
 var valuesTab = new(Array);
 var productsTab = new(Array);
 
+var list1 = ['Petit choux de blé noir garni','Blini garni','Mini-roulées de blé noir','Tuiles','Triskels au chocolat','Truffes','Meringues','Kig ha farz','Potée de pouldrezic (aux choux)','Potée Guérandaise (fèves, lard, saucisses)','Frigousse de bœuf','Cotriade ou matelote','Poulet au cidre',"Jambon à l'os (environ 30 pers.)",'Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)'];
+var list2 = ['1 galette blé noir_2 crêpes froment','2 galette blé noir_2 crêpes froment','Galettes blé noir à volonté_crêpes froment à volonté','1 galette blé noir_1 crêpes froment','Assortiment de lichouseries_2 galettes blé noir_Salade_2 crêpes froment'];
+var list3 = ['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues','Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat','Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées'];
+var list4 = ['Cidre, vin blanc, jus de pommes_Assortiment de crêpes roulées salées','Cidre, vin blanc, jus de raisins_Assortiment de lichouseries sucrées et salées'];
+var productsList = [list1,list2,list3,list4];
+
 //FONCTIONS
 function next() { //Etape suivante
   activeStep.nextStep();
@@ -180,7 +190,13 @@ function insertValuesTab(index, info) {
 }
 
 function insertProductTab(index, quantity, info){
+  
   productsTab[index] = [quantity, info];
+}
+
+function EraseProductTab(){
+  productsTabLength = productsTab.length;
+  productsTab.splice(0, valuesTabLength);
 }
 
 function displayList() {
@@ -197,4 +213,19 @@ function displayList() {
       id.style.display = 'none';
     }
   }
+}
+
+function displayProducts(){
+  productsTabLength = productsTab.length;
+  for(var i = 0; i < productsTabLength; i++) {
+    var product = readProduct(productsTab[i][1]);
+  }
+}
+
+function readProduct(index){
+  console.log(index);
+  index = index.split(".");
+  xIndex = parseInt(index[0]) - 1;
+  yIndex = parseInt(index[1]) - 1;
+  console.log(productsList[xIndex][yIndex]);
 }
