@@ -208,5 +208,5 @@ function validateForm () {
   console.log(formMail)
   console.log(formText)
   console.log(formTel)
-  alert("LOL")
+  
 }
