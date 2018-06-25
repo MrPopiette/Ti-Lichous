@@ -211,6 +211,17 @@
                 <input type="button" value="Envoyer par mail" onclick="" />
             </div>
         <!-- </form> -->
+
+        <!-- Test Formulaire contact -->
+        <form name="FormContact" action="/tilichous.php" onsubmit="return validateForm()" method="POST">
+            <input type="text" name="fText" value="Précision..."/>
+            <br>
+            <input required type="tel" name="fTel" value="tel"/>
+            <br>
+            <input required type="email" name="fMail" value="xxxxx@xxx.xx"/>
+            <br>
+            <input type="submit" value="Envoyer">
+        </form>   
         <br>
 
 
