@@ -216,26 +216,31 @@ function displayList() {
 
 function displayProducts(){
   productsTabLength = productsTab.length;
-  htmlString = "<ul>";
+  var htmlString = "<ul>";
+  var totalPrice = 0;
   for(var i = 0; i < productsTabLength; i++) {
     var product = readProduct(productsTab[i][1]);
     console.log(product);
     productName = product[0].replace('_', '<br>');
-    productUnitPrice = product[1];
-    if(product[2]!="x"){
+    if(product[1]!="x"){
+      productUnitPrice = product[1];
       multiplier = nbPersons;
     } else {
+      productUnitPrice = 0;
       multiplier = 1;
     }
     productTotalPrice = productUnitPrice * multiplier;
+    console.log("multiplier = " + multiplier);
+    totalPrice += productTotalPrice;
     if(product[2]== true){
-      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + " personnes</td><td>" + productTotalPrice +"€</td></table></li>";
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + " pers.</td><td>" + productTotalPrice +"€</td></table></li>";
     } else {
-      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + "</td><td>" + productTotalPrice +"€</td></table></li>";
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td></table></li>";
     }
-    
+    console.log('Prix total = ' + totalPrice);
   }
   document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
+  document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>"; 
 }
 
 function readProduct(index){
