@@ -190,7 +190,6 @@ function insertValuesTab(index, info) {
 }
 
 function insertProductTab(index, quantity, info){
-  
   productsTab[index] = [quantity, info];
 }
 
@@ -217,15 +216,17 @@ function displayList() {
 
 function displayProducts(){
   productsTabLength = productsTab.length;
+  htmlString = "<ul>";
   for(var i = 0; i < productsTabLength; i++) {
     var product = readProduct(productsTab[i][1]);
+    htmlString = htmlString + "<li><table class='tabProd'><td>" + product + "</td><td>"+ "prix" +"</td></table></li>";
   }
+  document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
 }
 
 function readProduct(index){
-  console.log(index);
   index = index.split(".");
   xIndex = parseInt(index[0]) - 1;
   yIndex = parseInt(index[1]) - 1;
-  console.log(productsList[xIndex][yIndex]);
+  return productsList[xIndex][yIndex];
 }
