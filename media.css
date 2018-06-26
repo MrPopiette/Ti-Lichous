@@ -108,11 +108,15 @@
     clear: both;
 }
 
-/* .tabProd {
-    width : 700px;
-} */
+td:first-child {
+    width : 300px;
+}
 
-td {
+td{
+    width : 100px;
+}
+
+td:last-child {
     width : 300px;
 }
 

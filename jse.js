@@ -165,10 +165,10 @@ var preValidation;
 var valuesTab = new(Array);
 var productsTab = new(Array);
 
-var list1 = ['Petit choux de blé noir garni','Blini garni','Mini-roulées de blé noir','Tuiles','Triskels au chocolat','Truffes','Meringues','Kig ha farz','Potée de pouldrezic (aux choux)','Potée Guérandaise (fèves, lard, saucisses)','Frigousse de bœuf','Cotriade ou matelote','Poulet au cidre',"Jambon à l'os (environ 30 pers.)",'Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)'];
-var list2 = ['1 galette blé noir_2 crêpes froment','2 galette blé noir_2 crêpes froment','Galettes blé noir à volonté_crêpes froment à volonté','1 galette blé noir_1 crêpes froment','Assortiment de lichouseries_2 galettes blé noir_Salade_2 crêpes froment'];
-var list3 = ['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues','Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat','Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées'];
-var list4 = ['Cidre, vin blanc, jus de pommes_Assortiment de crêpes roulées salées','Cidre, vin blanc, jus de raisins_Assortiment de lichouseries sucrées et salées'];
+var list1 = [['Petit choux de blé noir garni',1,true],['Blini garni',1,true],['Mini-roulées de blé noir',15,false],['Tuiles',5,false],['Triskels au chocolat',3,false],['Truffes',6,,false],['Meringues',3.5,false],['Kig ha farz',15,true],['Potée de pouldrezic (aux choux)',12,true],['Potée Guérandaise (fèves, lard, saucisses)',12,true],['Frigousse de bœuf',12,true],['Cotriade ou matelote',15,true],['Poulet au cidre',12,true],["Jambon à l'os (environ 30 pers.)","x",false],['Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)',"x",false]];
+var list2 = [['1 galette blé noir_2 crêpes froment',12,true],['2 galette blé noir_2 crêpes froment',15,true],['Galettes blé noir à volonté_crêpes froment à volonté',20,true],['1 galette blé noir_1 crêpes froment',7,true],['Assortiment de lichouseries_2 galettes blé noir_Salade_2 crêpes froment',32,true]];
+var list3 = [['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues',3.50],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat',4],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées',6]];
+var list4 = [['Cidre, vin blanc, jus de pommes_Assortiment de crêpes roulées salées',5,true],['Cidre, vin blanc, jus de raisins_Assortiment de lichouseries sucrées et salées',7,true]];
 var productsList = [list1,list2,list3,list4];
 
 //FONCTIONS
@@ -219,7 +219,21 @@ function displayProducts(){
   htmlString = "<ul>";
   for(var i = 0; i < productsTabLength; i++) {
     var product = readProduct(productsTab[i][1]);
-    htmlString = htmlString + "<li><table class='tabProd'><td>" + product + "</td><td>"+ "prix" +"</td></table></li>";
+    console.log(product);
+    productName = product[0].replace('_', '<br>');
+    productUnitPrice = product[1];
+    if(product[2]!="x"){
+      multiplier = nbPersons;
+    } else {
+      multiplier = 1;
+    }
+    productTotalPrice = productUnitPrice * multiplier;
+    if(product[2]== true){
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + " personnes</td><td>" + productTotalPrice +"€</td></table></li>";
+    } else {
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + "</td><td>" + productTotalPrice +"€</td></table></li>";
+    }
+    
   }
   document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
 }
