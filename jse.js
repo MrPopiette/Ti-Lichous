@@ -67,7 +67,6 @@ function Step(idName, prevStep, formType, nextStep) {
         for (var i = 0; i < formValueLength; i++) {
           insertProductTab(i, quantity, formValue[i])
         }
-        console.log(productsTab);
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
@@ -167,7 +166,7 @@ var productsTab = new(Array);
 
 var list1 = [['Petit choux de blé noir garni',1,true],['Blini garni',1,true],['Mini-roulées de blé noir',15,true],['Tuiles',5,false],['Triskels au chocolat',3,false],['Truffes',6,false],['Meringues',3.5,false],['Kig ha farz',15,true],['Potée de pouldrezic (aux choux)',12,true],['Potée Guérandaise (fèves, lard, saucisses)',12,true],['Frigousse de bœuf',12,true],['Cotriade ou matelote',15,true],['Poulet au cidre',12,true],["Jambon à l'os (environ 30 pers.)","x",false],['Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)',"x",false]];
 var list2 = [['1 galette blé noir_2 crêpes froment',12,true],['2 galette blé noir_2 crêpes froment',15,true],['Galettes blé noir à volonté_crêpes froment à volonté',20,true],['1 galette blé noir_1 crêpes froment',7,true],['Assortiment de lichouseries_2 galettes blé noir_Salade_2 crêpes froment',32,true]];
-var list3 = [['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues',3.50],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat',4],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées',6]];
+var list3 = [['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues',3.50,true],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat',4,true],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées',6,true]];
 var list4 = [['Cidre, vin blanc, jus de pommes_Assortiment de crêpes roulées salées',5,true],['Cidre, vin blanc, jus de raisins_Assortiment de lichouseries sucrées et salées',7,true]];
 var productsList = [list1,list2,list3,list4];
 
@@ -221,7 +220,6 @@ function displayProducts(){
   var message;
   for(var i = 0; i < productsTabLength; i++) {
     var product = readProduct(productsTab[i][1]);
-    console.log(product);
     productName = product[0].replace('_', '<br>');
     if(product[1]!="x"){
       productUnitPrice = product[1];
@@ -243,14 +241,12 @@ function displayProducts(){
     } else {
       htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td></table></li>";
     }
-    console.log('Prix total = ' + totalPrice);
   }
   document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
   document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>"; 
 }
 
 function readProduct(index){
-  console.log("index = " + index);
   index = index.split(".");
   xIndex = parseInt(index[0]) - 1;
   yIndex = parseInt(index[1]) - 1;
