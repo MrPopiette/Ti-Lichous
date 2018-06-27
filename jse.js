@@ -78,7 +78,7 @@ function Step(idName, prevStep, formType, nextStep) {
         var index = 0;
         var quantity = nbPersons;
         EraseProductTab();
-        insertProductTab(index, quantity, formValue);
+        insertProductTab(index, quantity, formValue[0]);
         preValidation = activeStep;
         eval(nextStep).showBlockCSS();
         activeStep = eval(nextStep);
@@ -250,6 +250,7 @@ function displayProducts(){
 }
 
 function readProduct(index){
+  console.log("index = " + index);
   index = index.split(".");
   xIndex = parseInt(index[0]) - 1;
   yIndex = parseInt(index[1]) - 1;
