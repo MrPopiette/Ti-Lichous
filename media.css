@@ -127,3 +127,7 @@ td:last-child {
 [type="checkbox"] {
     float: left
 }
+
+#contactForm {
+    clear: both;
+}

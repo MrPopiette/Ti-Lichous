@@ -18,7 +18,7 @@
             <li id='list5'>...</li>
         </ul><br>
         <!-- Etapes -->
-        <!-- <form method="post" action="traitement.php">  -->
+        <form method="post" action="/tilichous.php"> 
             <!-- /!\ Valide le formulaire lorsque l'on appui sur entrer -->
             <div class="Step" id="pro">
                 <p><b> Etes-vous professionnel ou particulier ? </b></p>
@@ -205,13 +205,32 @@
                 <p><b> Validation </b></p>
                 <p>Vos choix : </p>
                 <div id='displayProducts'></div>
-                <p>Prix minimum estimé: </p>
+                <p>Prix minimum estimé : </p>
                 <div id='displayTotalPrice'></div>
                 <br>
+                <div id="contactForm">
+                    <p><b> Contact </b></p>
+                    <input type="hidden" name="subject" value="Formulaire de contact">
+                    <input type="hidden" name="access" value="stopspam">
+        
+                    <input type="hidden" id="recapNbPersons" name="recapNbPersons" value="VARIABLE NOMBRE DE PERSONNES">
+                    <input type="hidden" id="recapTab" name="recapTab" value="VARIABLE DU TABLEAU RECAP">
+                    <br>
+                    <input required type="text" name="fLastName" placeholder="Nom"/>
+                    <br>
+                    <input required type="text" name="fFirstName" placeholder="Prénom"/>
+                    <br>
+                    <input required type="tel" name="fTel" placeholder="Numéro de téléphone"/>
+                    <br>
+                    <input required type="email" name="fMail" placeholder="Email"/>
+                    <br>
+                    <textarea cols="60" rows="20" wrap="PHYSICAL" type="text" name="fText" placeholder="Précision..." id="saisie"  /></textarea>
+                </div>
+                <br>
                 <input type="button" value="Précédent" onclick="prev();" />
-                <input type="button" value="Envoyer" onclick="" />
+                <input type="submit" value="Envoyer"/>  
             </div>
-        <!-- </form> -->
+        </form>
         <br>
 
 

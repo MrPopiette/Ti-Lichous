@@ -214,11 +214,18 @@ function displayList() {
 }
 
 function displayProducts(){
+  console.log(productsTab);
   productsTabLength = productsTab.length;
   var htmlString = "<ul>";
   var totalPrice = 0;
   var message;
+  var idRecap = "";
   for(var i = 0; i < productsTabLength; i++) {
+    idRecap += productsTab[i][1];
+    if (i < productsTabLength - 1){
+      idRecap += ",";
+    }
+    document.getElementById("recapTab").value = productsTab[i][1];
     var product = readProduct(productsTab[i][1]);
     productName = product[0].replace('_', '<br>');
     if(product[1]!="x"){
@@ -242,8 +249,10 @@ function displayProducts(){
       htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td></table></li>";
     }
   }
+  document.getElementById("recapNbPersons").value = nbPersons;
+  document.getElementById("recapTab").value = idRecap;
   document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
-  document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>"; 
+  document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>";
 }
 
 function readProduct(index){
