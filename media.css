@@ -1,0 +1,129 @@
+/* List */
+
+#list1 {
+    display: none;
+}
+
+#list2 {
+    display: none;
+}
+
+#list3 {
+    display: none;
+}
+
+#list4 {
+    display: none;
+}
+
+#list5 {
+    display: none;
+}
+
+/* Step */
+
+#pro {
+    display: block;
+}
+
+#nbPersons1 {
+    display: none;
+}
+
+#nbPersons2 {
+    display: none;
+}
+
+#cartePro {
+    display: none;
+}
+
+#carteParticulier {
+    display: none;
+}
+
+#pauseGourmandeSucree {
+    display: none;
+}
+
+#pauseGourmandeAperitive {
+    display: none;
+}
+
+#lichouseries {
+    display: none;
+}
+
+#menusCrepes {
+    display: none;
+}
+
+#validation {
+    display: none;
+}
+
+/* Style */
+
+.menu {
+    background-color: white;
+    width: 95%;
+    margin: 0.5%;
+    padding: 1%;
+    float: left;
+    border: dotted;
+    border-color: gray;
+}
+
+.menu, #div1{
+    width: 95.1%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
+.menu, #div2{
+    width: 45.8%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
+.menu, #div3{
+    width: 29.4%;
+    margin: 0.5%;
+    padding: 1%;
+}
+.menu, #div4{
+    width: 21.2%;
+    margin: 0.5%;
+    padding: 1%;
+}
+
+.navButton {
+    /* padding : 100%; */
+    float: none;
+    clear: both;
+}
+
+.subcategory {
+    float: none;
+    clear: both;
+}
+
+td:first-child {
+    width : 300px;
+}
+
+td{
+    width : 100px;
+}
+
+td:last-child {
+    width : 300px;
+}
+
+.quantityDrink {
+    width : 120px;
+}
+
+[type="checkbox"] {
+    float: left
+}

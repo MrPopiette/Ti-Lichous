@@ -1,176 +1,257 @@
-// alert("Tu dois valider l'alerte pour que le script se lance !");
-
-/*
-*
-*   La seconde alerte ouvre une seconde boite de dialogue en arrière plan, proposant
-*   d'empecher la diffusion d'autres alertes.
-*
-*   alert('Superposition ?');
-*
-*/
-
-// =========================================================
-console.log('Salutàtouslesamiscestdavidlafargepokemon!')
-console.log('Marie la mante religieuse')
-console.log('Hello in JS')
-var a
-a = 42.5364354
-console.log(a)
-a = Math.random()
-console.log(a)
-// ==========================================================
-
-/*
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-*/
-
-var test = false
 console.clear()
 
-// ======================================================================================
-// Déclaration des variables selon leur fonction pour le projet Ti Lichous :
+// ----- Tableaux 'nextStep' -----
+var nextPro = ['nbPersons1', 'nbPersons2'];
+var nextNbPersons1 = 'carteParticulier';
+var nextNbPersons2 = 'cartePro';
+// var nextCartePro = 'none';
+// var nextCarteParticulier = 'none';
+var nextCartePro = ['pauseGourmandeSucree','pauseGourmandeAperitive'];
+var nextCarteParticulier = ['lichouseries','menusCrepes'];
+var nextPauseGourmandeSucree = 'validation';
+var nextPauseGourmandeAperitive = 'validation';
+var nextLichouseries = 'validation';
+var nextMenusCrepes = 'validation';
+var nextValidation = 'none';
 
-var TypePersonne = false
-var TypeRepas = false
-var Lichouseries = false
-var MenuCrepes = false
-var PauseGourmande = false
-var NombrePersonnes = 0
+// CLASS
+function Step(idName, prevStep, formType, nextStep) {
+  this.idName = idName;
+  this.prevStep = prevStep;
+  this.formType = formType; // 0 = Radiobouton  1 = Number  2/3 = Liste des produits  4 = Validation
+  this.nextStep = nextStep;
 
-// EVENEMENT PRO / RECEPTION //
-
-// Pause gourmande sucrée
-var NbrPauseGourmandeSucree1 = 0
-var NbrPauseGourmandeSucree2 = 0
-var NbrPauseGourmandeSucree3 = 0
-// Pause gourmande salée
-var NbrPauseGourmandeSalee1 = 0
-var NbrPauseGourmandeSalee2 = 0
-// Menu Crepes
-var NbrMenuCrepesC1 = 0 // C = classique || P = prestige
-var NbrMenuCrepesC2 = 0
-var NbrMenuCrepesC3 = 0
-var NbrMenuCrepesC4 = 0
-var NbrMenuCrepesP1 = 0
-// Boissons
-var NbrBoissons1 = 0
-var NbrBoissons2 = 0
-var NbrBoissons3 = 0
-var NbrBoissons4 = 0
-
-// REPAS A EMPORTER //
-
-// Selection Sucrée
-var NbrSelectionSucree1 = 0
-var NbrSelectionSucree2 = 0
-var NbrSelectionSucree3 = 0
-// Selection Salée
-var NbrSelectionSalee = 0
-var NbrSelectionSalee = 0
-var NbrSelectionSalee = 0
-// Autres plats
-var NbrPlatsTypiques1 = 0
-var NbrPlatsTypiques2 = 0
-var NbrPlatsTypiques3 = 0
-var NbrPlatsTypiques4 = 0
-var NbrPlatsTypiques5 = 0
-var NbrPlatsTypiques6 = 0
-var NbrPlatsTypiques7 = 0 // Jambon à l'os, comment ça se passe ?
-var NbrPlatsTypiques8 = 0 // Buffet de crepes
-
-// VARIABLES AUTRES
-
-var erreur = false
-
-// ===================================================================================
-
-/*
-function ProOuParticulier
-*/
-
-function ProOuParticulier () {
-  if (TypePersonne === true) {
-    console.log('Pro')
-    TypePersonne = false
-    document.getElementById('Menu').disabled = false
-  } else {
-    console.log('Particulier')
-    TypePersonne = true
-    document.getElementById('Menu').disabled = true
+  this.prevStep = function() { //Etape Précédente
+    if(prevStep != 'none') {
+      this.hideBlockCSS();
+      if (formType == 4) {
+        preValidation.showBlockCSS();
+        activeStep = preValidation;
+      } else {
+        prevStep.showBlockCSS();
+        activeStep = prevStep;
+      }
+      step -= 1;
+    }
   }
-};
 
-function ChangeTextPro (Pro) {
-  var ChangePro = document.getElementById('Pro')
-  if (ChangePro.firstChild.data == 'Pro') {
-    ChangePro.firstChild.data = 'Particulier'
-  } else {
-    ChangePro.firstChild.data = 'Pro'
+  this.nextStep = function() { //Etape Suivante
+    if(nextStep != 'none') {
+      var formValue = this.getValues();
+      if (formType == 0) { // 0 = Radiobouton
+        formValue[0] = eval(nextStep[formValue[0]]);
+        this.hideBlockCSS();
+        formValue[0].showBlockCSS();
+        activeStep = formValue[0];
+        insertValuesTab(step, formValue[1]);
+      } else if (formType == 1){ //1 = Number
+        var min = parseInt(document.getElementsByName(idName)[0].min);
+        var max = parseInt(document.getElementsByName(idName)[0].max);
+        if (formValue >= min && formValue <= max) {
+          this.hideBlockCSS();
+          insertValuesTab(step, formValue);
+          eval(nextStep).showBlockCSS();
+          activeStep = eval(nextStep);
+          nbPersons = formValue;
+        } else {
+          alert("Entrez un nombre entre 8 et 60.");
+          step -= 1;
+        }
+      } else if (formType == 2){ //2 = Liste des produits PARTICULIERS
+        insertValuesTab(step, 'Choix de la commande');
+        this.hideBlockCSS();
+        //insérer les valeurs
+        var formValueLength = formValue.length;
+        var quantity = nbPersons;
+        EraseProductTab();
+        for (var i = 0; i < formValueLength; i++) {
+          insertProductTab(i, quantity, formValue[i])
+        }
+        console.log(productsTab);
+        preValidation = activeStep;
+        eval(nextStep).showBlockCSS();
+        activeStep = eval(nextStep);
+        displayProducts();
+      } else if (formType == 3){ //3 = Liste des produits PROS
+        insertValuesTab(step, 'Choix de la commande');
+        this.hideBlockCSS();
+        var index = 0;
+        var quantity = nbPersons;
+        EraseProductTab();
+        insertProductTab(index, quantity, formValue);
+        preValidation = activeStep;
+        eval(nextStep).showBlockCSS();
+        activeStep = eval(nextStep);
+        displayProducts();
+      } else if (formtype == 4){ //Validation
+        
+      }
+      step += 1;
+    }
+  }
+
+  this.getValues = function() { //Récupération des informations du formulaire
+    var inputs;
+    var formValue;
+    if (formType == 0){ // 0 = Radiobouton
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          formValue = [i ,inputs[i].value];
+        }
+      }
+    } else if (formType == 1) { //1 = Number
+      formValue = document.getElementsByName(idName);
+      formValue = formValue[0].value;
+    } else if (formType == 2) { //2 = Liste des produits PARTICULIERS
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+      formValue = new(Array);
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          formValue.push(inputs[i].value);
+        }
+        if (inputs[i].type === 'checkbox' && inputs[i].checked) {
+          formValue.push(inputs[i].value);
+        }
+      }
+    } else if (formType == 3) { //3 = Liste des produits PROS (choix unique)
+      inputs = document.getElementsByName(idName);
+      inputsLength = inputs.length;
+      for (var i = 0; i < inputsLength; i++) {
+        if (inputs[i].type === 'radio' && inputs[i].checked) {
+          formValue = [inputs[i].value];
+        }
+      }
+    }
+    return formValue;
+  }
+
+  this.showBlockCSS = function () {
+    id = document.getElementById(idName);
+    id.style.display = 'block';
+  }
+
+  this.hideBlockCSS = function () {
+    id = document.getElementById(idName);
+    id.style.display = 'none';
   }
 }
 
+//INSTANCES
+var pro = new Step('pro', 'none', 0, nextPro);
 
-/*
-function ChoixNbrPersonnes
-*/
+var nbPersons1 = new Step('nbPersons1', pro, 1, nextNbPersons1);
+var nbPersons2 = new Step('nbPersons2', pro, 1, nextNbPersons2);
 
-function ChoixNbrPersonnes () {
-  NombrePersonnes = document.getElementById('NbrPersonnes')
-  if (!NombrePersonnes.checkValidity()) {
-    document.getElementById('PersonneDevis').innerHTML = NombrePersonnes.validationMessage
+var carteParticulier = new Step('carteParticulier', nbPersons1, 0, nextCarteParticulier);
+var cartePro = new Step('cartePro', nbPersons2, 0, nextCartePro);
+
+var lichouseries = new Step('lichouseries', carteParticulier, 2, nextLichouseries);
+var menusCrepes = new Step('menusCrepes', carteParticulier, 2, nextMenusCrepes);
+var pauseGourmandeSucree = new Step('pauseGourmandeSucree', cartePro, 3, nextPauseGourmandeSucree);
+var pauseGourmandeAperitive = new Step('pauseGourmandeAperitive', cartePro, 3, nextPauseGourmandeAperitive);
+
+var validation = new Step('validation', 'validation', 4, nextValidation);
+
+// VARIABLES
+var erreur = false;
+var step = 0;
+var activeStep = pro;
+var nbPersons;
+var category;
+var preValidation;
+var valuesTab = new(Array);
+var productsTab = new(Array);
+
+var list1 = [['Petit choux de blé noir garni',1,true],['Blini garni',1,true],['Mini-roulées de blé noir',15,true],['Tuiles',5,false],['Triskels au chocolat',3,false],['Truffes',6,false],['Meringues',3.5,false],['Kig ha farz',15,true],['Potée de pouldrezic (aux choux)',12,true],['Potée Guérandaise (fèves, lard, saucisses)',12,true],['Frigousse de bœuf',12,true],['Cotriade ou matelote',15,true],['Poulet au cidre',12,true],["Jambon à l'os (environ 30 pers.)","x",false],['Buffet de crêpes : peut-être accompagné de garnitures (sucre, confitures, ...)',"x",false]];
+var list2 = [['1 galette blé noir_2 crêpes froment',12,true],['2 galette blé noir_2 crêpes froment',15,true],['Galettes blé noir à volonté_crêpes froment à volonté',20,true],['1 galette blé noir_1 crêpes froment',7,true],['Assortiment de lichouseries_2 galettes blé noir_Salade_2 crêpes froment',32,true]];
+var list3 = [['Café, thé, jus de pommes ou raisins_Triskels au chocolat_Meringues',3.50],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat',4],['Café, thé, jus de pommes ou raisins_Gâteau breton_Triskels au chocolat_Crêpes roulées',6]];
+var list4 = [['Cidre, vin blanc, jus de pommes_Assortiment de crêpes roulées salées',5,true],['Cidre, vin blanc, jus de raisins_Assortiment de lichouseries sucrées et salées',7,true]];
+var productsList = [list1,list2,list3,list4];
+
+//FONCTIONS
+function next() { //Etape suivante
+  activeStep.nextStep();
+}
+
+function prev() { // Etape précédente
+  activeStep.prevStep();
+}
+
+function insertValuesTab(index, info) {
+  valuesTabLength = valuesTab.length;
+  if (index < valuesTabLength - 1) {
+    valuesTab.splice(1, valuesTabLength);
+  }
+  valuesTab[index] = info;
+  displayList();
+}
+
+function insertProductTab(index, quantity, info){
+  productsTab[index] = [quantity, info];
+}
+
+function EraseProductTab(){
+  productsTabLength = productsTab.length;
+  productsTab.splice(0, valuesTabLength);
+}
+
+function displayList() {
+  for(var i = 0; i <= 3; i++){
+    var id = "list" + (i + 1);
+    if(valuesTab[i] != null) {
+      var listContent;
+      listContent = document.getElementById(id);
+      id = document.getElementById(id);
+      listContent.firstChild.data = valuesTab[i].charAt(0).toUpperCase() + valuesTab[i].substring(1).toLowerCase();
+      id.style.display = 'block';
+    } else {
+      id = document.getElementById(id);
+      id.style.display = 'none';
+    }
   }
 }
 
-/*
-function TypeMenu
-*/
-
-function TypeMenu () {
-  if (TypeRepas === true) {
-    console.log('Repas')
-    TypeRepas = false
-  } else {
-    console.log('Collation')
-    TypeRepas = true
+function displayProducts(){
+  productsTabLength = productsTab.length;
+  var htmlString = "<ul>";
+  var totalPrice = 0;
+  var message;
+  for(var i = 0; i < productsTabLength; i++) {
+    var product = readProduct(productsTab[i][1]);
+    console.log(product);
+    productName = product[0].replace('_', '<br>');
+    if(product[1]!="x"){
+      productUnitPrice = product[1];
+      if(product[2]==true){
+        multiplier = nbPersons;
+      } else {
+        multiplier = 1;
+      }
+    } else {
+      productUnitPrice = 0;
+      multiplier = 1;
+    }
+    productTotalPrice = productUnitPrice * multiplier;
+    totalPrice += productTotalPrice;
+    if(product[2]== true){
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td>x" + multiplier + " pers.</td><td>" + productTotalPrice +"€</td></table></li>";
+    } else if(product[2]== false && product[1]!="x"){
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td><td>"+ productUnitPrice +"€</td><td></td><td>" + productTotalPrice +"€</td></table></li>";
+    } else {
+      htmlString = htmlString + "<li><table class='tabProd'><td>" + productName + "</td></table></li>";
+    }
+    console.log('Prix total = ' + totalPrice);
   }
+  document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
+  document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>"; 
 }
 
-/*
-function PauseGourmande
-*/
-
-function PauseGourmande () {
-  if (PauseGourmande === true) {
-    console.log('Salé')
-    PauseGourmande = false
-    document.getElementById('Sucré').disabled = false
-  } else {
-    console.log('Sucré')
-    TypePersonne = true
-    document.getElementById('Sucré').disabled = true
-  }
-};
-
-function ChangeTextGourmande (Salé) {
-  var ChangeGourmande = document.getElementById('Salé')
-  if (ChangeGourmande.value == 'Salé') {
-    ChangeGourmande.value = 'Sucré'
-  } else {
-    ChangeGourmande.value = 'Salé'
-  }
+function readProduct(index){
+  index = index.split(".");
+  xIndex = parseInt(index[0]) - 1;
+  yIndex = parseInt(index[1]) - 1;
+  return productsList[xIndex][yIndex];
 }
