@@ -4,8 +4,6 @@ console.clear()
 var nextPro = ['nbPersons1', 'nbPersons2'];
 var nextNbPersons1 = 'carteParticulier';
 var nextNbPersons2 = 'cartePro';
-// var nextCartePro = 'none';
-// var nextCarteParticulier = 'none';
 var nextCartePro = ['pauseGourmandeSucree','pauseGourmandeAperitive'];
 var nextCarteParticulier = ['lichouseries','menusCrepes'];
 var nextPauseGourmandeSucree = 'validation';
@@ -204,7 +202,11 @@ function displayList() {
       var listContent;
       listContent = document.getElementById(id);
       id = document.getElementById(id);
-      listContent.firstChild.data = valuesTab[i].charAt(0).toUpperCase() + valuesTab[i].substring(1).toLowerCase();
+      if(i==1){
+        listContent.firstChild.data = valuesTab[i].charAt(0).toUpperCase() + valuesTab[i].substring(1).toLowerCase() + " personnes";
+      } else {
+        listContent.firstChild.data = valuesTab[i].charAt(0).toUpperCase() + valuesTab[i].substring(1).toLowerCase();
+      }
       id.style.display = 'block';
     } else {
       id = document.getElementById(id);
@@ -214,11 +216,9 @@ function displayList() {
 }
 
 function displayProducts(){
-  console.log(productsTab);
   productsTabLength = productsTab.length;
   var htmlString = "<ul>";
   var totalPrice = 0;
-  var message;
   var idRecap = "";
   for(var i = 0; i < productsTabLength; i++) {
     idRecap += productsTab[i][1];
@@ -227,7 +227,7 @@ function displayProducts(){
     }
     document.getElementById("recapTab").value = productsTab[i][1];
     var product = readProduct(productsTab[i][1]);
-    productName = product[0].replace('_', '<br>');
+    productName = product[0].replace(/_/g, '<br>');
     if(product[1]!="x"){
       productUnitPrice = product[1];
       if(product[2]==true){
@@ -251,6 +251,9 @@ function displayProducts(){
   }
   document.getElementById("recapNbPersons").value = nbPersons;
   document.getElementById("recapTab").value = idRecap;
+  document.getElementById("recapPro").value = valuesTab[0];
+  document.getElementById("recapPresta").value = valuesTab[2];
+  document.getElementById("recapPrice").value = totalPrice;
   document.getElementById("displayProducts").innerHTML = htmlString + "</ul>";
   document.getElementById("displayTotalPrice").innerHTML = "<p>" + totalPrice + "€</p>";
 }

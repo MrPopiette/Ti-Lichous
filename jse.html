@@ -3,14 +3,13 @@
         <meta charset="utf-8">
         <title>Traiteur Ti Lichous</title>
         <script type="text/javascript" src="jse.js"></script>
-        
         <link rel="stylesheet" type="text/css" href="media.css">
     </head>
     <body>
         <h1>SERVICE TRAITEUR</h1>
 
         <!-- Liste des étapes -->
-        <ul id="List">
+        <ul class="List">
             <li id='list1'>...</li>
             <li id='list2'>...</li>
             <li id='list3'>...</li>
@@ -21,7 +20,7 @@
         <form method="post" action="tilichous.php"> 
             <!-- /!\ Valide le formulaire lorsque l'on appui sur entrer -->
             <div class="Step" id="pro">
-                <p><b> Etes-vous professionnel ou particulier ? </b></p>
+                <p><strong> Etes-vous professionnel ou particulier ? </strong></p>
                 <input type="radio" name="pro" value="Particulier" checked/> Particulier<br>
                 <input type="radio" name="pro" value="Professionnel" /> Professionnel<br>
                 <br>
@@ -29,7 +28,7 @@
             </div>
             
             <div class="Step" id="nbPersons1">
-                <p><b> Combien de personnes êtes-vous ? (Minimum 15 personnes) </b></p>
+                <p><strong> Combien de personnes êtes-vous ? (Minimum 15 personnes) </strong></p>
                 <input type="range" id="nbPersonsSliderPart" min=15 max=60 value=20>
                 <input type="number" id="nbPersonsNumberPart" name="nbPersons1" min=8 max=60 value=15><br>
                 <br>
@@ -39,7 +38,7 @@
             </div>
 
             <div class="Step" id="nbPersons2">
-                <p><b> Combien de personnes êtes-vous ? (Minimum 8 personnes) </b></p>
+                <p><strong> Combien de personnes êtes-vous ? (Minimum 8 personnes) </strong></p>
                 <input type="range" id="nbPersonsSliderPro" min=8 max=60 value=15>
                 <input type="number" id="nbPersonsNumberPro" name="nbPersons2" min=8 max=60 value=15><br>
                 <br>
@@ -49,7 +48,7 @@
             </div>
 
             <div class="Step" id="cartePro">
-                <p><b> Pause gourmande : </b></p>
+                <p><strong> Pause gourmande : </strong></p>
                 <input type="radio" name="cartePro" value="Pause Gourmande Sucrée" checked/> Sucrée<br>
                 <input type="radio" name="cartePro" value="Pause Gourmande Apéritive" /> Apéritive<br>
                 <br>
@@ -60,7 +59,7 @@
             </div>
 
             <div class="Step" id="carteParticulier">
-                <p><b> Prestations : </b></p>
+                <p><strong> Prestations : </strong></p>
                 <input type="radio" name="carteParticulier" value="Lichouseries" checked/> Lichouseries Sucrées/salées (À emporter à partir de 8 personnes)<br>
                 <input type="radio" name="carteParticulier" value="Menus Crêpes" /> Menu crêpes (À domicile à partir de 20 personnes)<br>
                 <br>
@@ -71,7 +70,7 @@
             </div>
 
             <div class="Step" id="lichouseries">
-                <p class="category"><b> Lichouseries </b></p>
+                <p class="category"><strong> Lichouseries </strong></p>
                 <p> Assortiment de lichouseries : à partir de 3.00€/pers.<br>
                 <br>
                 <input type="checkbox" name="lichouseries" value="1.1" /> <table class="tabProd"><td>Petit choux de blé noir garni</td><td>1.00€/pièce</td></table>
@@ -106,7 +105,7 @@
             </div>
 
             <div class="Step" id="menusCrepes">
-                <p"category"><b> Menus Crêpes </b></p>
+                <p"category"><strong> Menus Crêpes </strong></p>
                 <p class="subcategory"> Formules Classiques </p>
                 <div class="menu" id="div4">
                     <input type="radio" name="menusCrepes" value="2.1"/>
@@ -152,7 +151,7 @@
             </div>
 
             <div class="Step" id="pauseGourmandeSucree">
-                <p class="category"><b> Pause Gourmande Sucrée </b></p>
+                <p class="category"><strong> Pause Gourmande Sucrée </strong></p>
                 <div class="menu" id="div3">
                     <input type="radio" name="pauseGourmandeSucree" value="3.1" checked/>
                     <p> Café, thé, jus de pommes ou raisins<br>
@@ -182,7 +181,7 @@
             </div>
 
             <div class="Step" id="pauseGourmandeAperitive">
-                <p class="category"><b> Pause Gourmande Apéritive </b></p>
+                <p class="category"><strong> Pause Gourmande Apéritive </strong></p>
                 <div class="menu" id="div2">
                     <input type="radio" name="pauseGourmandeAperitive" value="4.1" checked/>
                     <p> Cidre, vin blanc, jus de pommes<br>
@@ -202,19 +201,22 @@
             </div>
 
             <div class="Step" id="validation">
-                <p><b> Validation </b></p>
+                <p><strong> Validation </strong></p>
                 <p>Vos choix : </p>
                 <div id='displayProducts'></div>
                 <p>Prix minimum estimé : </p>
                 <div id='displayTotalPrice'></div>
                 <br>
                 <div id="contactForm">
-                    <p><b> Contact </b></p>
+                    <p><strong> Contact </strong></p>
                     <input type="hidden" name="subject" value="Formulaire de contact">
                     <input type="hidden" name="access" value="stopspam">
         
                     <input type="hidden" id="recapNbPersons" name="recapNbPersons" value="VARIABLE NOMBRE DE PERSONNES">
                     <input type="hidden" id="recapTab" name="recapTab" value="VARIABLE DU TABLEAU RECAP">
+                    <input type="hidden" id="recapPro" name="recapPro" value="VARIABLE PRO OU PARTICULIER">
+                    <input type="hidden" id="recapPresta" name="recapPresta" value="VARIABLE PRESTATION">
+                    <input type="hidden" id="recapPrice" name="recapPrice" value="VARIABLE PRIX MINIMAL">
                     <br>
                     <input required type="text" name="fLastName" placeholder="Nom"/>
                     <br>

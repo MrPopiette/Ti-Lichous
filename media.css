@@ -65,7 +65,6 @@
 /* Style */
 
 .menu {
-    background-color: white;
     width: 95%;
     margin: 0.5%;
     padding: 1%;
@@ -130,4 +129,42 @@ td:last-child {
 
 #contactForm {
     clear: both;
+}
+
+@media screen and (max-width: 840px){
+    #div4, #div2 {
+        width: 45.8%;
+        margin: 0.5%;
+        padding: 1%;
+    }
+
+    #div3 {
+        width: 95.1%;
+        margin: 0.5%;
+        padding: 1%;
+    }
+
+    td:first-child {
+        width : 50%;
+    }
+    
+    td{
+        width : 20%;
+    }
+    
+    td:last-child {
+        width : 30%;
+    }
+}
+
+@media screen and (max-width: 540px){
+    #div4, #div3, #div2 {
+        width: 95.1%;
+        margin: 0.5%;
+        padding: 1%;
+    }
+    
+    .list {
+        display: none;
+    }
 }
