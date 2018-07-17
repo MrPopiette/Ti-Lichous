@@ -49,7 +49,7 @@ $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 $mail->Host = "smtp.gmail.com";
 $mail->Port = 465; // or 587
 $mail->IsHTML(true);
-$mail->Username = "benjamin.strabach@gmail.com";
+$mail->Username = "tilichous.devis@gmail.com";
 $mail->Password = "Epsi2018!";
 $mail->SetFrom("benjamin.strabach@gmail.com");
 $mail->Subject = "Devis en ligne : ". strtoupper($FormLastName). " ". $FormFirstName;
